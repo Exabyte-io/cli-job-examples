@@ -18,7 +18,7 @@
 #  For more information visit https://docs.exabyte.io/cli/jobs     #
 # ---------------------------------------------------------------- #
 
-#PBS -N VASP-TEST
+#PBS -N CP2K-TEST
 #PBS -j oe
 #PBS -l nodes=1
 #PBS -l ppn=1
