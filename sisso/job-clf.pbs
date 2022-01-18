@@ -1,5 +1,3 @@
-
-
 #!/bin/bash
 
 # ---------------------------------------------------------------- #
@@ -27,7 +25,7 @@
 #PBS -l walltime=00:00:10:00
 #PBS -q D
 #PBS -m abe
-#PBS -M rhys@exabyte.io
+#PBS -M info@exabyte.io
 #
 ## Uncomment the line below and put a desired project name, e.g.:
 ##      "seminar-default", or "john-projectname".
