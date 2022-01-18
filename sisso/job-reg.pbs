@@ -1,0 +1,52 @@
+
+
+#!/bin/bash
+
+# ---------------------------------------------------------------- #
+#                                                                  #
+#  Example job submission script for Exabyte.io platform           #
+#                                                                  #
+#  Shows resource manager directives for:                          #
+#                                                                  #
+#    1. the name of the job                (-N)                    #
+#    2. the number of nodes to be used     (-l nodes=)             #
+#    3. the number of processors per node  (-l ppn=)               #
+#    4. the walltime in dd:hh:mm:ss format (-l walltime=)          #
+#    5. queue                              (-q) D, OR, OF, SR, SF  #
+#    6. merging standard output and error  (-j oe)                 #
+#    7. email about job abort, begin, end  (-m abe)                #
+#    8. email address to use               (-M)                    #
+#                                                                  #
+#  For more information visit https://docs.exabyte.io/cli/jobs     #
+# ---------------------------------------------------------------- #
+
+#PBS -N SISSO-REG-TEST
+#PBS -j oe
+#PBS -l nodes=1
+#PBS -l ppn=1
+#PBS -l walltime=00:00:10:00
+#PBS -q D
+#PBS -m abe
+#PBS -M rhys@exabyte.io
+#
+## Uncomment the line below and put a desired project name, e.g.:
+##      "seminar-default", or "john-projectname".
+## NOTE: this is required when using organizational accounts.
+## more at https://docs.exabyte.io/jobs-cli/batch-scripts/directives/.
+## The job will be charged to the corresponding project.
+## When commented out, the default project for user is assumed.
+##PBS -A <PROJECT_NAME_IN_ACCOUNTING_SYSTEM>
+
+# load module
+module load sisso/sisso-1.0-g-11.2.0-ompi-4.1.1-openblas-0.3.18
+
+# go to the job working directory
+cd $PBS_O_WORKDIR
+
+# NOTE due to issues with OpenMPI 4.1.1 we currently need to copy
+# the PBS_NODEFILE into the .exabyte hidden folder in the WORKDIR
+# in order for MPI to be correctly configured.
+cp $PBS_NODEFILE .exabyte/$PBS_JOBID
+
+# run the calculation
+mpiexec -n $PBS_NP sisso++ sisso-reg.json
