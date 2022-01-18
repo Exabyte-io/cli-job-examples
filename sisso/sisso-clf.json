@@ -1,0 +1,15 @@
+{
+    "data_file": "data-clf.csv",
+    "property_key": "Class",
+    "desc_dim": 2,
+    "n_sis_select": 20,
+    "max_rung": 1,
+    "calc_type": "classification",
+    "min_abs_feat_val": 1e-5,
+    "max_abs_feat_val": 1e8,
+    "n_residual": 10,
+    "n_models_store": 1,
+    "leave_out_frac": 0.0,
+    "leave_out_inds": [],
+    "opset": ["add", "sub", "abs_diff", "mult", "div", "inv", "abs", "exp", "log", "sin", "cos", "sq", "cb", "six_pow", "sqrt", "cbrt", "neg_exp"]
+}
