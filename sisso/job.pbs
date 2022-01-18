@@ -43,5 +43,10 @@ module load sisso/sisso-1.0-g-11.2.0-ompi-4.1.1-openblas-0.3.18
 # go to the job working directory
 cd $PBS_O_WORKDIR
 
+# NOTE due to issues with OpenMPI 4.1.1 we currently need to copy
+# the PBS_NODEFILE into the .exabyte hidden folder in the WORKDIR
+# in order for MPI to be correctly configured.
+cp $PBS_NODEFILE .exabyte/$PBS_JOBID
+
 # run the calculation
 mpiexec -n $PBS_NP sisso++ sisso.json
