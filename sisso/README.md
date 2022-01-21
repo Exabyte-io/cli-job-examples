@@ -5,7 +5,9 @@ SISSO consists of an exhaustive feature generation step that combines input feat
 
 ## Notes
 
-Examples for both regression (`*-reg*`) and classification (`*-clf*`) tasks are presented. The regression task looks at predicting the energy difference between the Rock Salt (RS) and Zinc Blende (ZB) structures of octet-binary compounds. Whereas the classification task looks at predicting whether RS or ZB is lower in energy. In both problems the following feature set is used: the nuclear charge (Z); ionization potential (IP); electron affinity (EA); HOMO and LUMO energies (E_HOMO and E_LUMO); and radii of the atomic s, p and d-orbitals (r_s, r_p, and r_d) of the cation (A) and anion(B) of the materials. Additionally the radii of the \sigma and \pi orbitals of the dimer for each material are included.
+Examples for both regression (`*-reg*`) and classification (`*-clf*`) tasks are presented. The regression task looks at predicting the energy difference between the Rock Salt (RS) and Zinc Blende (ZB) structures of octet-binary compounds. Whereas the classification task looks at predicting whether RS or ZB is lower in energy. 
+
+In both problems the following feature set is used: the nuclear charge (Z); ionization potential (IP); electron affinity (EA); HOMO and LUMO energies (E_HOMO and E_LUMO); and radii of the atomic s, p and d-orbitals (r_s, r_p, and r_d) of the cation (A) and anion(B) of the materials. Additionally the radii of the \sigma and \pi orbitals of the dimer for each material are included.
 
 These examples use the data from the official `sisso++` tutorial here: https://sissopp_developers.gitlab.io/sissopp/tutorial/0_intro.html . The original data was first presented in [2].
 
