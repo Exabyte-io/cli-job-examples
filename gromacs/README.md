@@ -12,4 +12,5 @@ More sample data files may be found at GROMACS website [1] and FTP archive [2].
 ## Links
 
 [1] - https://www.gromacs.org/
+
 [2] - https://ftp.gromacs.org/pub/benchmarks/
