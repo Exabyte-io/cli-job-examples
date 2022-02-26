@@ -18,7 +18,7 @@
 #  For more information visit https://docs.exabyte.io/cli/jobs     #
 # ---------------------------------------------------------------- #
 
-#PBS -N SISSO-CLF-TEST
+#PBS -N DEEPMD-LAMMPS-MD
 #PBS -j oe
 #PBS -l nodes=1
 #PBS -l ppn=1
@@ -47,4 +47,4 @@ cd $PBS_O_WORKDIR
 cp $PBS_NODEFILE .exabyte/$PBS_JOBID
 
 # run the molecular dynamics calculation
-mpiexec -n $PBS_NP lmp tmp
+mpiexec -n $PBS_NP lmp < in.lammps

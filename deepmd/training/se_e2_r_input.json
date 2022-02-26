@@ -52,7 +52,7 @@
 	    "numb_btch":	3,
 	    "_comment":		"that's all"
 	},
-	"numb_steps":	1000000,
+	"numb_steps":	3001,
 	"seed":		1,
 	"disp_file":	"lcurve.out",
 	"disp_freq":	100,
