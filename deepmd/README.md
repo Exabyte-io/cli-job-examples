@@ -9,9 +9,15 @@ We note that in order to have simple examples the model in question is trained w
 
 ### Training
 
+The training script trains a model on the water data provided in the package examples [2] and then freezes that model for production. The job must be submitted from the same directory as the job.pbs file.
+
 ### Molecular Dynamics
+
+The molecular dynamics script takes the `frozen_model.pb` file produced by the training example and carries out a prospective simulation using LAMMPS. As above the job must be submitted from the same directory as the job.pbs file.
 
 
 ## Links
 
 [1] - https://doi.org/10.1016/j.cpc.2018.03.016 (https://arxiv.org/abs/1712.03641)
+
+[2] - https://github.com/deepmodeling/deepmd-kit/tree/master/examples/water/data
