@@ -1,1 +1,2 @@
 deepmd/training/data/** filter=lfs diff=lfs merge=lfs -text
+deepmd/training/data/ filter=lfs diff=lfs merge=lfs -text
