@@ -7,7 +7,16 @@ DeePMD (Deep Potential Molecular Dynamics) [1] is a package for easily building 
 Here we provide two sets of examples, one for training a neural network potential using DeePMD, and a second for running a LAMMPS simulation using that trained model.
 We note that in order to have simple examples the model in question is trained with a small amount of data for a short period of time. Consequently, the accuracy of the resulting model is lower than we should expect for a model trained for longer on a larger amount of data.
 
-### Training
+### Data Generation
+
+This example invokes a python script to transform the output of a Car-Parrinello molecular dynamics run using Quantum Espresso (See `espresso/cp.x/job.pbs`) into the input format used by DeePMD-Kit.
+
+```
+module load deepmd/deepmd-2.0.2
+python convert.py
+```
+
+### Model Training
 
 The training script trains a model on the water data provided in the package examples [2] and then freezes that model for production. The job must be submitted from the same directory as the job.pbs file.
 
