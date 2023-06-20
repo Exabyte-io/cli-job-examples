@@ -15,7 +15,7 @@
 #    7. email about job abort, begin, end  (-m abe)                #
 #    8. email address to use               (-M)                    #
 #                                                                  #
-#  For more information visit https://docs.exabyte.io/cli/jobs     #
+#  For more info visit https://docs.mat3ra.com/jobs-cli/overview/  #
 # ---------------------------------------------------------------- #
 
 #PBS -N GROMACS-TEST
@@ -30,7 +30,7 @@
 ## Uncomment the line below and put a desired project name, e.g.:
 ##      "seminar-default", or "john-projectname".
 ## NOTE: this is required when using organizational accounts.
-## more at https://docs.exabyte.io/jobs-cli/batch-scripts/directives/.
+## more at https://docs.mat3ra.com/jobs-cli/batch-scripts/directives/
 ## The job will be charged to the corresponding project.
 ## When commented out, the default project for user is assumed.
 ##PBS -A <PROJECT_NAME_IN_ACCOUNTING_SYSTEM>

@@ -9,13 +9,13 @@ We use `git-lfs` to store the input data for some of the examples used here. Ple
 Sources are batch job scripts and can be cloned as below:
 
 ```bash
-git clone git@github.com:Exabyte-io/exabyte-cli-job-examples.git
+git clone git@github.com:Exabyte-io/cli-job-examples.git
 ```
 
 OR
 
 ```bash
-git clone https://github.com/Exabyte-io/exabyte-cli-job-examples.git
+git clone https://github.com/Exabyte-io/cli-job-examples.git
 ```
 
 
@@ -26,9 +26,9 @@ This repository is an [open-source](LICENSE.md) work-in-progress and we welcome 
 
 ## Links
 
-1. [Exabyte.io Documentation](https://docs.exabyte.io)
+1. [Mat3ra.com Documentation](https://docs.mat3ra.com)
 
-2. [Command-line Jobs in the Exabyte.io](https://docs.exabyte.io/jobs-cli/overview/)
+2. [Command-line Jobs in the Mat3ra.com](https://docs.mat3ra.com/jobs-cli/overview/)
 
 3. [Git Large File Storage](https://git-lfs.github.com/)
 
