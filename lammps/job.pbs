@@ -42,4 +42,4 @@ module load lammps
 cd $PBS_O_WORKDIR
 
 # run the molecular dynamics calculation
-mpiexec -n $PBS_NP lmp < in.min
+mpirun -np $PBS_NP lmp < in.min
