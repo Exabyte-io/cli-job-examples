@@ -1,0 +1,34 @@
+# Energy minimization of periodic Cu block with a random vacancy
+
+# initialization
+units           metal
+boundary        p p p
+atom_style      atomic
+timestep        0.004
+
+# system definition
+variable        a equal 3.615
+lattice 	    fcc ${a} orient x 1 0 0 orient y 0 1 0 orient z 0 0 1
+region		    cell block -4 4 -4 4 -4 4 units lattice
+create_box	    1 cell
+create_atoms	1 region cell
+
+# create a random vacancy
+delete_atoms     random count 1 no all cell 4242
+
+# interatomic potential
+variable        potfile string Cu_u3.eam
+pair_style      eam
+pair_coeff      * * ${potfile}
+
+# output formatting
+dump            1 all atom 1000 atoms.dump
+thermo_style    custom step pe press pxx pyy pzz vol lx ly lz
+thermo          10
+
+# minimize
+min_style cg
+minimize 1e-15 1e-15 5000 5000
+
+# write final configuration
+write_data cu_min.data nocoeff
