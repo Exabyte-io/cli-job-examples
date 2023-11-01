@@ -1,34 +1,44 @@
-# Energy minimization of periodic Cu block with a random vacancy
+# From https://github.com/lammps/lammps/blob/develop/examples/min/in.min
 
-# initialization
-units           metal
-boundary        p p p
-atom_style      atomic
-timestep        0.004
+units		lj
+dimension	2
+atom_style	atomic
 
-# system definition
-variable        a equal 3.615
-lattice 	    fcc ${a} orient x 1 0 0 orient y 0 1 0 orient z 0 0 1
-region		    cell block -4 4 -4 4 -4 4 units lattice
-create_box	    1 cell
-create_atoms	1 region cell
+lattice		sq2 0.8442
+region		box block 0 20 0 20 -0.1 0.1
+create_box	1 box
+create_atoms	1 box
+mass		1 1.0
 
-# create a random vacancy
-delete_atoms     random count 1 no all cell 4242
+velocity	all create 5.0 87287 loop geom
 
-# interatomic potential
-variable        potfile string Cu_u3.eam
-pair_style      eam
-pair_coeff      * * ${potfile}
+pair_style	lj/cut 2.5
+pair_coeff	1 1 1.0 1.0 2.5
+pair_modify	shift yes
 
-# output formatting
-dump            1 all atom 1000 atoms.dump
-thermo_style    custom step pe press pxx pyy pzz vol lx ly lz
-thermo          10
+neighbor	0.3 bin
+neigh_modify	delay 0 every 1 check yes
 
-# minimize
-min_style cg
-minimize 1e-15 1e-15 5000 5000
+fix		1 all nve
+fix		2 all enforce2d
 
-# write final configuration
-write_data cu_min.data nocoeff
+#dump		1 all atom 100 dump.min
+
+#dump		2 all image 50 image.*.jpg type type &
+#		zoom 1.6 adiam 1.5
+#dump_modify	2 pad 4
+
+#dump		3 all movie 50 movie.mpg type type &
+#		zoom 1.6 adiam 1.5
+#dump_modify	3 pad 4
+
+thermo		100
+
+run		1000
+
+neigh_modify	delay 0 every 1 check yes
+
+#dump_modify	1 every 25
+
+thermo		50
+minimize	1.0e-6 0.001 1000 10000

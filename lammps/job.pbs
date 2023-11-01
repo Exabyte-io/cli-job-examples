@@ -35,11 +35,15 @@
 ## When commented out, the default project for user is assumed.
 ##PBS -A <PROJECT_NAME_IN_ACCOUNTING_SYSTEM>
 
-# load module
-module load lammps
-
 # go to the job working directory
 cd $PBS_O_WORKDIR
 
-# run the molecular dynamics calculation
-mpirun -np $PBS_NP lmp < in.min
+module load lammps/12Dec2018-i-14.0.3.174-impi-5.0.2.044
+export LAMMPS_EXECUTABLE=lammps
+
+## Uncomment the lines below module to enable the use of GPU-accelerated version
+# export LAMMPS_EXECUTABLE=lmp
+# module load lammps/2022.01.07-g-11.2.0-ompi-4.1.1-cuda-11.5
+# cp $PBS_NODEFILE .exabyte/$PBS_JOBID
+
+mpirun -np $PBS_NP ${LAMMPS_EXECUTABLE} < in.min
