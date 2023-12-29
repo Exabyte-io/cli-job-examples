@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # ---------------------------------------------------------------- #
 #                                                                  #
 #  Example job submission script for Exabyte.io platform           #
@@ -15,25 +14,26 @@
 #    7. email about job abort, begin, end  (-m abe)                #
 #    8. email address to use               (-M)                    #
 #                                                                  #
-#  For more info visit https://docs.mat3ra.com/jobs-cli/overview/  #
+#  For more information visit https://docs.exabyte.io/cli/jobs     #
 # ---------------------------------------------------------------- #
 
-#PBS -N DEEPMD-LAMMPS-MD
+#PBS -N MD-LAMMPS
 #PBS -j oe
+##PBS -q comp-002-zone-a-production-20160630-cluster-007.exabyte.io
 #PBS -l nodes=1
-#PBS -l ppn=1
-#PBS -l walltime=00:00:10:00
-#PBS -q D
-#PBS -m abe
-#PBS -M info@exabyte.io
+#PBS -l ppn=4
+#PBS -l walltime=00:01:00:00
+#PBS -q OR
+##PBS -m abe
+##PBS -M info@exabyte.io
 #
 ## Uncomment the line below and put a desired project name, e.g.:
-##      "seminar-default", or "john-projectname".
+## "seminar-default" or "john-project"
 ## NOTE: this is required when using organizational accounts.
-## more at https://docs.mat3ra.com/jobs-cli/batch-scripts/directives/
+## more at https://docs.exabyte.io/jobs-cli/batch-scripts/directives/.
 ## The job will be charged to the corresponding project.
 ## When commented out, the default project for user is assumed.
-##PBS -A <PROJECT_NAME_IN_ACCOUNTING_SYSTEM>
+#PBS -A seminar-espresso-tutorials
 
 # load module
 module load deepmd/deepmd-2.0.2
@@ -42,4 +42,4 @@ module load deepmd/deepmd-2.0.2
 cd $PBS_O_WORKDIR
 
 # run the molecular dynamics calculation
-mpiexec -n $PBS_NP lmp < in.lammps
+mpirun -n $PBS_NP lmp < in.lammps
