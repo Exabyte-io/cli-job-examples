@@ -24,7 +24,7 @@
     "learning_rate" : {
 	"type":		"exp",
 	"decay_steps":	5000,
-	"start_lr":	0.005,	
+	"start_lr":	0.005,
 	"stop_lr":	3.51e-8,
 	"_comment":	" that's all"
     },
@@ -42,14 +42,13 @@
     "_comment": " traing controls",
     "training" : {
 	"training_data": {
-	    "systems":		["../data/data_0/", "../data/data_1/", "../data/data_2/"],
+	    "systems":		["../data/training_data/"],
 	    "batch_size":	"auto",
 	    "_comment":		"that's all"
 	},
 	"validation_data":{
-	    "systems":		["../data/data_3"],
-	    "batch_size":	1,
-	    "numb_btch":	3,
+	    "systems":		["../data/validation_data/"],
+	    "batch_size":	"auto",
 	    "_comment":		"that's all"
 	},
 	"numb_steps":	3001,
@@ -63,4 +62,3 @@
 
     "_comment":		"that's all"
 }
-

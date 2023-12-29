@@ -1,3 +1,4 @@
 deepmd/model_training/data/** filter=lfs diff=lfs merge=lfs -text
+deepmd/model_training/results/graph.pb filter=lfs diff=lfs merge=lfs -text
 deepmd/data_generation/qe_raw_output/** filter=lfs diff=lfs merge=lfs -text
 *.raw filter=lfs diff=lfs merge=lfs -text
