@@ -21,7 +21,7 @@
 #PBS -j oe
 ##PBS -q comp-002-zone-a-production-20160630-cluster-007.exabyte.io
 #PBS -l nodes=1
-#PBS -l ppn=1
+#PBS -l ppn=4
 #PBS -l walltime=00:01:00:00
 #PBS -q OR
 ##PBS -m abe
@@ -36,18 +36,15 @@
 #PBS -A seminar-espresso-tutorials
 
 # load module
-module load deepmd/deepmd-2.0.2
+module load espresso/7.2-g-11.2.0-ompi-4.1.1-libxc-6.2.0
 
 # go to the job working directory
 cd $PBS_O_WORKDIR
-mkdir -p results
-cd results
 
-# run the training command
-dp train ../se_e2_r_input.json
+# NOTE due to issues with OpenMPI 4.1.1 we currently need to copy
+# the PBS_NODEFILE into the .exabyte hidden folder in the WORKDIR
+# in order for MPI to be correctly configured.
+cp $PBS_NODEFILE .exabyte/$PBS_JOBID
 
-# freeze the model checkpoints
-dp freeze -o graph.pb
-
-# optionally, we could compress the output model file
-# dp compress -i graph.pb -o graph-compress.pb
+# run the calculation
+mpirun -np $PBS_NP cp.x -in h2o_32.in > h2o_32.out

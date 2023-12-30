@@ -2,7 +2,7 @@ import dpdata
 import numpy as np
 
 data = dpdata.LabeledSystem("h2o_32", fmt="qe/cp/traj")
-print('# the data contains %d frames' % len(data))
+print("Dataset contains total {0} frames".format(len(data)))
 
 # randomly choose 20% index for validation_data
 size = len(data)
@@ -14,9 +14,9 @@ index_training = list(set(range(size)) - set(index_validation))
 data_training = data.sub_system(index_training)
 data_validation = data.sub_system(index_validation)
 
-# all training data put into directory:"training_data"
-data_training.to_deepmd_npy('training_data')
-# all validation data put into directory:"validation_data"
-data_validation.to_deepmd_npy('validation_data')
-print('# the training data contains %d frames' % len(data_training))
-print('# the validation data contains %d frames' % len(data_validation))
+print("Using {0} frames as training set".format(len(data_training)))
+print("Using {0} frames as validation set".format(len(data_validation)))
+
+# save training and validation sets
+data_training.to_deepmd_npy("../model_traing/data/training_data")
+data_validation.to_deepmd_npy("../model_traing/data/validation_data")
