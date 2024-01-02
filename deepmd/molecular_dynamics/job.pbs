@@ -23,14 +23,14 @@
 #PBS -l nodes=1
 #PBS -l ppn=4
 #PBS -l walltime=00:01:00:00
-#PBS -q OR
+#PBS -q D
 ##PBS -m abe
 ##PBS -M info@exabyte.io
 #
 ## Uncomment the line below and put a desired project name, e.g.:
 ## "seminar-default" or "john-project"
 ## NOTE: this is required when using organizational accounts.
-## more at https://docs.exabyte.io/jobs-cli/batch-scripts/directives/.
+## more at https://docs.exabyte.io/jobs-cli/batch-scripts/directives/
 ## The job will be charged to the corresponding project.
 ## When commented out, the default project for user is assumed.
 #PBS -A seminar-espresso-tutorials

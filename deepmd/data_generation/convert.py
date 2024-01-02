@@ -1,6 +1,7 @@
 import dpdata
 import numpy as np
 
+# https://docs.deepmodeling.com/projects/dpdata/en/master/formats/QECPTrajFormat.html
 data = dpdata.LabeledSystem("h2o_32", fmt="qe/cp/traj")
 print("Dataset contains total {0} frames".format(len(data)))
 
@@ -18,5 +19,5 @@ print("Using {0} frames as training set".format(len(data_training)))
 print("Using {0} frames as validation set".format(len(data_validation)))
 
 # save training and validation sets
-data_training.to_deepmd_npy("../model_traing/data/training_data")
-data_validation.to_deepmd_npy("../model_traing/data/validation_data")
+data_training.to_deepmd_npy("../../model_training/data/training")
+data_validation.to_deepmd_npy("../../model_training/data/validation")

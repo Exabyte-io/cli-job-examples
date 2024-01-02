@@ -30,7 +30,7 @@
 ## Uncomment the line below and put a desired project name, e.g.:
 ## "seminar-default" or "john-project"
 ## NOTE: this is required when using organizational accounts.
-## more at https://docs.exabyte.io/jobs-cli/batch-scripts/directives/.
+## more at https://docs.exabyte.io/jobs-cli/batch-scripts/directives/
 ## The job will be charged to the corresponding project.
 ## When commented out, the default project for user is assumed.
 #PBS -A seminar-espresso-tutorials
@@ -45,6 +45,9 @@ cd results
 
 # run the training command
 dp train ../se_e2_r_input.json
+
+# parallelism using MPI
+# mpirun -np $PBS_NP dp train ../se_e2_r_input.json
 
 # freeze the model checkpoints
 dp freeze -o graph.pb
