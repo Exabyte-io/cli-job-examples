@@ -44,9 +44,11 @@ cd $PBS_O_WORKDIR
 # link input sources
 cd output
 ln -f ../input/* .
-PREVIOUS_STEP_OUTPUT_PATH="../step_02_preprocess_dft_data/output${POSTFIX}/"
+PREVIOUS_STEP_OUTPUT_PATH="../../step_02_preprocess_dft_data/output${OUTPUT_POSTFIX}/"
 if [ ! -d "$PREVIOUS_STEP_OUTPUT_PATH/training" ]; then
     echo "ERROR: Required file(s) from ${PREVIOUS_STEP_OUTPUT_PATH} not found."
+    ls -l "$PREVIOUS_STEP_OUTPUT_PATH"
+    exit 1
 else
     ln -f "$PREVIOUS_STEP_OUTPUT_PATH/training" .
     ln -f "$PREVIOUS_STEP_OUTPUT_PATH/validation" .
