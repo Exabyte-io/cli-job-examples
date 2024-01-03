@@ -25,6 +25,7 @@
 #PBS -q D
 #PBS -m abe
 #PBS -M info@mat3ra.com
+##PBS -W depend=afterok:JOB_ID_TO_WAIT_FOR
 #
 ## Uncomment the line below and put a desired project name, e.g.:
 ## "seminar-default" or "john-project"
