@@ -43,14 +43,14 @@ cd $PBS_O_WORKDIR
 
 # link input sources
 cd output
-ln -f ../input/* .
+ln -sf ../input/* .
 PREVIOUS_STEP_OUTPUT_PATH="../../step_03_train_mlff/output${OUTPUT_POSTFIX}/"
 if [ ! -f "$PREVIOUS_STEP_OUTPUT_PATH/graph.pb" ]; then
     echo "ERROR: Required file(s) from ${PREVIOUS_STEP_OUTPUT_PATH} not found."
     ls -l "$PREVIOUS_STEP_OUTPUT_PATH"
     exit 1
 else
-    ln -f "$PREVIOUS_STEP_OUTPUT_PATH/graph.pb" .
+    ln -sf "$PREVIOUS_STEP_OUTPUT_PATH/graph.pb" .
 fi
 
 # run molecular dynamics calculation

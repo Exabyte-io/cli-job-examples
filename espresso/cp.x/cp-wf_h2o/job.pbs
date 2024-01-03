@@ -48,7 +48,7 @@ cp $PBS_NODEFILE .exabyte/$PBS_JOBID
 
 # link input sources
 cd output
-ln -f ../input/* .
+ln -sf ../input/* .
 
 # run the calculation
 mpirun -np $PBS_NP cp.x -in h2o_32.in > h2o_32.out
