@@ -20,7 +20,7 @@
 #PBS -N DeepMD-MLFF-Step-02
 #PBS -j oe
 #PBS -l nodes=1
-#PBS -l ppn=4
+#PBS -l ppn=1
 #PBS -l walltime=00:01:00:00
 #PBS -q D
 #PBS -m abe
@@ -57,6 +57,8 @@ dp train ./se_e2_r_input.json
 # By default, dp train will use GPU(s).
 # CPU Parallelism can be used using MPI/horovod.
 # https://docs.deepmodeling.com/projects/deepmd/en/master/train/parallel-training.html
+# See also OMP_NUM_THREADS and TF_INTER_OP_PARALLELISM_THREADS per:
+# https://docs.deepmodeling.com/projects/deepmd/en/master/troubleshooting/howtoset_num_nodes.html
 # horovodrun -np $PBS_NP dp train --mpi-log=master ./se_e2_r_input.json
 
 # freeze the model checkpoints
