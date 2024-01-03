@@ -11,8 +11,12 @@
 set_dependency_for_file_on_job_id() {
     FILE=$1
     JOB_ID=$2
-    sed "s/##PBS -W/#PBS -W/g" $FILE > "$FILE.with_dependency"
-    sed -i "s/JOB_ID_TO_WAIT_FOR/${JOB_ID}/g" "$FILE.with_dependency"
+    if [[ ! -z $JOB_ID ]]; then
+        sed "s/##PBS -W/#PBS -W/g" $FILE > "$FILE.with_dependency"
+        sed -i "s/JOB_ID_TO_WAIT_FOR/${JOB_ID}/g" "$FILE.with_dependency"
+    else
+        cp $FILE $FILE.with_dependency
+    fi
 }
 
 echo "Submitting the job for step_01"
