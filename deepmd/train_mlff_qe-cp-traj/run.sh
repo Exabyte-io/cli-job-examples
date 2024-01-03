@@ -35,7 +35,6 @@ echo "Submitting the job for step_03"
 cd step_03*
     set_dependency_for_file_on_job_id job.pbs $JOB_ID_STEP_02
     JOB_ID_STEP_03=$(qsub job.pbs.with_dependency)
-# cd back to the root directory
 cd - &> /dev/null
 
 echo "Submitting the job for step_04"
