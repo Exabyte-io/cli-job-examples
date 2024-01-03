@@ -5,7 +5,8 @@
   prefix = "h2o_32",
   pseudo_dir = '.',
   outdir = '.',
-  nstep = 100,
+  ! Very small number of steps for testing purposes only
+  nstep = 10,
   isave  = 100,
   dt = 2.D0,
   tstress = .true.,
@@ -21,7 +22,8 @@
   celldm(1) = 18.6655,
   nat       = 96,
   ntyp      = 2,
-  ecutwfc   = 50.00D0,
+  ! Per the cutoff value from http://www.pseudo-dojo.org/
+  ecutwfc   = 36.00D0,
   ecfixed   = 130.D0, ! effective cutoff value
   q2sigma   = 15.D0,
   qcutz     = 200.D0,
