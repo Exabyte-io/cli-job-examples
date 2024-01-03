@@ -6,7 +6,7 @@
   pseudo_dir = '.',
   outdir = '.',
   ! Very small number of steps for testing purposes only
-  nstep = 10,
+  nstep = 50,
   isave  = 100,
   dt = 2.D0,
   tstress = .true.,
