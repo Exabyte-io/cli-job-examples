@@ -17,7 +17,7 @@
 #  For more information visit https://docs.exabyte.io/cli/jobs     #
 # ---------------------------------------------------------------- #
 
-#PBS -N DeepMD-MLFF-Step-02
+#PBS -N DeepMD-MLFF-Step-03
 #PBS -j oe
 #PBS -l nodes=1
 #PBS -l ppn=1
