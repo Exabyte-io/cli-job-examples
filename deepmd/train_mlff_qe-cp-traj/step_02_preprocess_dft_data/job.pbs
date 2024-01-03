@@ -44,7 +44,7 @@ cd $PBS_O_WORKDIR
 # link input sources
 cd output
 ln -f ../input/* .
-PREVIOUS_STEP_OUTPUT_PATH="../../step_01_generate_dft_data/output${POSTFIX}/"
+PREVIOUS_STEP_OUTPUT_PATH="../step_01_generate_dft_data/output${POSTFIX}/"
 if [ ! -d "$PREVIOUS_STEP_OUTPUT_PATH/h2o_32.wfc" ]; then
     echo "ERROR: Required file(s) from ${PREVIOUS_STEP_OUTPUT_PATH} not found."
 else

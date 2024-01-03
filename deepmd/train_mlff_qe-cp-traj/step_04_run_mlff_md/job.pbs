@@ -44,7 +44,7 @@ cd $PBS_O_WORKDIR
 # link input sources
 cd output
 ln -f ../input/* .
-PREVIOUS_STEP_OUTPUT_PATH="../../step_03_train_mlff/output${POSTFIX}/"
+PREVIOUS_STEP_OUTPUT_PATH="../step_03_train_mlff/output${POSTFIX}/"
 if [ ! -f "$PREVIOUS_STEP_OUTPUT_PATH/graph.pb" ]; then
     echo "ERROR: Required file(s) from ${PREVIOUS_STEP_OUTPUT_PATH} not found."
 else
