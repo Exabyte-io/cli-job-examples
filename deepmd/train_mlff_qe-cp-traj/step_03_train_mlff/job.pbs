@@ -20,7 +20,7 @@
 #PBS -N DeepMD-MLFF-Step-03
 #PBS -j oe
 #PBS -l nodes=1
-#PBS -l ppn=1
+#PBS -l ppn=2
 #PBS -l walltime=00:01:00:00
 #PBS -q D
 #PBS -m abe
@@ -54,9 +54,6 @@ else
     ln -sf "$PREVIOUS_STEP_OUTPUT_PATH/validation" .
 fi
 
-# run the training command
-dp train ./se_e2_r_input.json
-
 # By default, dp train will use GPU(s).
 # CPU Parallelism can be used using MPI/horovod.
 # https://docs.deepmodeling.com/projects/deepmd/en/master/train/parallel-training.html
@@ -64,8 +61,15 @@ dp train ./se_e2_r_input.json
 # https://docs.deepmodeling.com/projects/deepmd/en/master/troubleshooting/howtoset_num_nodes.html
 # horovodrun -np $PBS_NP dp train --mpi-log=master ./se_e2_r_input.json
 
+export OMP_NUM_THREADS=1
+export TF_INTRA_OP_PARALLELISM_THREADS=1
+export TF_INTER_OP_PARALLELISM_THREADS=1
+
+# run the training command
+dp train ./se_e2_r_input.json | tee train.log
+
 # freeze the model checkpoints
-dp freeze -o graph.pb
+dp freeze -o graph.pb | tee freeze.log
 
 # optionally, we could compress the output model file
 # dp compress -i graph.pb -o graph-compress.pb
