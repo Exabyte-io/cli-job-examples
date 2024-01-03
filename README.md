@@ -18,6 +18,15 @@ OR
 git clone https://github.com/Exabyte-io/cli-job-examples.git
 ```
 
+## Usage
+
+Basic usage is to copy the example folder and submit the job script. Below we assume that `~/cli-job-examples` is where the repository was cloned into, then copy an example subfolder, and resolve any symbolic links
+
+```bash
+cp -rL ~/cli-job-examples/espresso/pw.x espresso-example-pw.x
+cd espresso-example-pw.x
+qsub job.pbs
+```
 
 ## Contribution
 

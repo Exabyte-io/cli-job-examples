@@ -1,0 +1,53 @@
+#!/bin/bash
+# ---------------------------------------------------------------- #
+#                                                                  #
+#  Example job submission script for Exabyte.io platform           #
+#                                                                  #
+#  Shows resource manager directives for:                          #
+#                                                                  #
+#    1. the name of the job                (-N)                    #
+#    2. the number of nodes to be used     (-l nodes=)             #
+#    3. the number of processors per node  (-l ppn=)               #
+#    4. the walltime in dd:hh:mm:ss format (-l walltime=)          #
+#    5. queue                              (-q) D, OR, OF, SR, SF  #
+#    6. merging standard output and error  (-j oe)                 #
+#    7. email about job abort, begin, end  (-m abe)                #
+#    8. email address to use               (-M)                    #
+#                                                                  #
+#  For more information visit https://docs.exabyte.io/cli/jobs     #
+# ---------------------------------------------------------------- #
+
+#PBS -N QE-CP.X-WF-H2O-32
+#PBS -j oe
+#PBS -l nodes=1
+#PBS -l ppn=4
+#PBS -l walltime=00:01:00:00
+#PBS -q D
+#PBS -m abe
+#PBS -M info@mat3ra.com
+#
+## Uncomment the line below and put a desired project name, e.g.:
+## "seminar-default" or "john-project"
+## NOTE: this is required when using organizational accounts.
+## more at https://docs.exabyte.io/jobs-cli/batch-scripts/directives/.
+## The job will be charged to the corresponding project.
+## When commented out, the default project for user is assumed.
+##PBS -A seminar-default
+
+# load module
+module load espresso/7.2-g-11.2.0-ompi-4.1.1-libxc-6.2.0
+
+# go to the job working directory
+cd $PBS_O_WORKDIR
+
+# NOTE due to issues with OpenMPI 4.1.1 we currently need to copy
+# the PBS_NODEFILE into the .exabyte hidden folder in the WORKDIR
+# in order for MPI to be correctly configured.
+cp $PBS_NODEFILE .exabyte/$PBS_JOBID
+
+# link input sources
+cd output
+ln -f ../input/* .
+
+# run the calculation
+mpirun -np $PBS_NP cp.x -in h2o_32.in > h2o_32.out

@@ -1,0 +1,66 @@
+#!/bin/bash
+# ---------------------------------------------------------------- #
+#                                                                  #
+#  Example job submission script for Exabyte.io platform           #
+#                                                                  #
+#  Shows resource manager directives for:                          #
+#                                                                  #
+#    1. the name of the job                (-N)                    #
+#    2. the number of nodes to be used     (-l nodes=)             #
+#    3. the number of processors per node  (-l ppn=)               #
+#    4. the walltime in dd:hh:mm:ss format (-l walltime=)          #
+#    5. queue                              (-q) D, OR, OF, SR, SF  #
+#    6. merging standard output and error  (-j oe)                 #
+#    7. email about job abort, begin, end  (-m abe)                #
+#    8. email address to use               (-M)                    #
+#                                                                  #
+#  For more information visit https://docs.exabyte.io/cli/jobs     #
+# ---------------------------------------------------------------- #
+
+#PBS -N DeepMD-MLFF-Step-02
+#PBS -j oe
+#PBS -l nodes=1
+#PBS -l ppn=4
+#PBS -l walltime=00:01:00:00
+#PBS -q D
+#PBS -m abe
+#PBS -M info@mat3ra.com
+#
+## Uncomment the line below and put a desired project name, e.g.:
+## "seminar-default" or "john-project"
+## NOTE: this is required when using organizational accounts.
+## more at https://docs.exabyte.io/jobs-cli/batch-scripts/directives/.
+## The job will be charged to the corresponding project.
+## When commented out, the default project for user is assumed.
+##PBS -A seminar-default
+
+# load module
+module load deepmd/deepmd-2.0.2
+
+# go to the job working directory
+cd $PBS_O_WORKDIR
+
+# link input sources
+cd output
+ln -f ../input/* .
+PREVIOUS_STEP_OUTPUT_PATH="../../step_02_preprocess_dft_data/output${POSTFIX}/"
+if [ ! -d "$PREVIOUS_STEP_OUTPUT_PATH/training" ]; then
+    echo "ERROR: Required file(s) from ${PREVIOUS_STEP_OUTPUT_PATH} not found."
+else
+    ln -f "$PREVIOUS_STEP_OUTPUT_PATH/training" .
+    ln -f "$PREVIOUS_STEP_OUTPUT_PATH/validation" .
+fi
+
+# run the training command
+dp train ./se_e2_r_input.json
+
+# By default, dp train will use GPU(s).
+# CPU Parallelism can be used using MPI/horovod.
+# https://docs.deepmodeling.com/projects/deepmd/en/master/train/parallel-training.html
+# horovodrun -np $PBS_NP dp train --mpi-log=master ./se_e2_r_input.json
+
+# freeze the model checkpoints
+dp freeze -o graph.pb
+
+# optionally, we could compress the output model file
+# dp compress -i graph.pb -o graph-compress.pb
