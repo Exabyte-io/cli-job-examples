@@ -1,0 +1,81 @@
+#!/bin/bash
+# ---------------------------------------------------------------- #
+#                                                                  #
+#  Example job submission script for Exabyte.io platform           #
+#                                                                  #
+#  Shows resource manager directives for:                          #
+#                                                                  #
+#    1. the name of the job                (-N)                    #
+#    2. the number of nodes to be used     (-l nodes=)             #
+#    3. the number of processors per node  (-l ppn=)               #
+#    4. the walltime in dd:hh:mm:ss format (-l walltime=)          #
+#    5. queue                              (-q) D, OR, OF, SR, SF  #
+#    6. merging standard output and error  (-j oe)                 #
+#    7. email about job abort, begin, end  (-m abe)                #
+#    8. email address to use               (-M)                    #
+#                                                                  #
+#  For more information visit https://docs.exabyte.io/cli/jobs     #
+# ---------------------------------------------------------------- #
+
+#PBS -N CP-MD-H2O-32
+#PBS -j oe
+##PBS -q comp-002-zone-a-production-20160630-cluster-007.exabyte.io
+#PBS -l nodes=1
+#PBS -l ppn=4
+#PBS -l walltime=00:01:00:00
+#PBS -q OR
+##PBS -m abe
+##PBS -M info@exabyte.io
+#
+## Uncomment the line below and put a desired project name, e.g.:
+## "seminar-default" or "john-project"
+## NOTE: this is required when using organizational accounts.
+## more at https://docs.exabyte.io/jobs-cli/batch-scripts/directives/
+## The job will be charged to the corresponding project.
+## When commented out, the default project for user is assumed.
+#PBS -A seminar-espresso-tutorials
+
+# load modules
+module load espresso/7.2-g-11.2.0-ompi-4.1.1-libxc-6.2.0
+module load deepmd/deepmd-2.0.2
+
+# go to the job working directory
+cd $PBS_O_WORKDIR
+JOB_DIR=$(pwd)
+
+# NOTE due to issues with OpenMPI 4.1.1 we currently need to copy
+# the PBS_NODEFILE into the .exabyte hidden folder in the WORKDIR
+# in order for MPI to be correctly configured.
+cp $PBS_NODEFILE .exabyte/$PBS_JOBID
+
+cd ${JOB_DIR}/../espresso/cp.x
+cp -a ${JOB_DIR}/.exabyte .
+# clean up previous output files if exists, otherwise cp.x would append new
+# data to existing to files
+for file in $( ls h2o_32.* ); do
+    if [ "$file" != "h2o_32.in" ]; then
+        rm $file
+    fi
+done
+
+# cp.x calculation
+mpirun -np $PBS_NP cp.x -in h2o_32.in > h2o_32.out
+
+# prepare data for deepmd
+cp h2o_32.* ${JOB_DIR}/data_generation/qe_raw_output
+cd ${JOB_DIR}/data_generation/qe_raw_output
+python3 ../convert.py
+
+# train and save model
+cd ${JOB_DIR}/model_training
+mkdir -p results
+cd results
+
+cp -a ${JOB_DIR}/.exabyte .
+mpirun -np $PBS_NP dp train ../se_e2_r_input.json
+dp freeze -o graph.pb
+
+# run lammps calculation
+cd ${JOB_DIR}/molecular_dynamics
+cp -a ${JOB_DIR}/.exabyte .
+mpirun -np $PBS_NP lmp < in.lammps
