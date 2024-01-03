@@ -50,7 +50,7 @@ if [ ! -f "$PREVIOUS_STEP_OUTPUT_PATH/h2o_32.wfc" ]; then
     ls -l "$PREVIOUS_STEP_OUTPUT_PATH"
     exit 1
 else
-    ln -sf "$PREVIOUS_STEP_OUTPUT_PATH/*" .
+    ln -sf $PREVIOUS_STEP_OUTPUT_PATH/* .
 fi
 
 echo "Started convert_and_train_test_split.py"
