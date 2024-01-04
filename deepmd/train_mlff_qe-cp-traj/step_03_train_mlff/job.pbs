@@ -1,7 +1,7 @@
 #!/bin/bash
 # ---------------------------------------------------------------- #
 #                                                                  #
-#  Example job submission script for Exabyte.io platform           #
+#  Example job submission script for Mat3ra.com platform           #
 #                                                                  #
 #  Shows resource manager directives for:                          #
 #                                                                  #
@@ -66,10 +66,10 @@ export TF_INTRA_OP_PARALLELISM_THREADS=1
 export TF_INTER_OP_PARALLELISM_THREADS=1
 
 # run the training command
-dp train ./se_e2_r_input.json | tee train.log
+dp train ./se_e2_r_input.json -l train.log | tee train.log
 
 # freeze the model checkpoints
-dp freeze -o graph.pb | tee freeze.log
+dp freeze -o graph.pb -l freeze.log | tee freeze.log
 
 # optionally, we could compress the output model file
 # dp compress -i graph.pb -o graph-compress.pb
