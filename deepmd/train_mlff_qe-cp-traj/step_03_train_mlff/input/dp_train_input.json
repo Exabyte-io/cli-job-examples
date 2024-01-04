@@ -1,5 +1,4 @@
 {
-    "_comment": " model parameters",
     "model": {
         "type_map": [
             "O",
@@ -20,7 +19,6 @@
             ],
             "resnet_dt": false,
             "seed": 1,
-            "_comment": " that's all"
         },
         "fitting_net": {
             "neuron": [
@@ -29,17 +27,14 @@
                 60
             ],
             "resnet_dt": true,
-            "seed": 1,
-            "_comment": "that's all"
-        },
-        "_comment": " that's all"
+            "seed": 1
+        }
     },
     "learning_rate": {
         "type": "exp",
         "decay_steps": 1000,
         "start_lr": 0.005,
-        "stop_lr": 3.51e-6,
-        "_comment": " that's all"
+        "stop_lr": 3.51e-6
     },
     "loss": {
         "start_pref_e": 0.02,
@@ -47,32 +42,26 @@
         "start_pref_f": 1000,
         "limit_pref_f": 1,
         "start_pref_v": 0,
-        "limit_pref_v": 0,
-        "_comment": " that's all"
+        "limit_pref_v": 0
     },
-    "_comment": " traing controls",
     "training": {
         "training_data": {
             "systems": [
                 "./training/"
             ],
             "batch_size": "auto",
-            "_comment": "that's all"
         },
         "validation_data": {
             "systems": [
                 "./validation/"
             ],
             "batch_size": "auto",
-            "_comment": "that's all"
         },
         "numb_steps": 301,
         "seed": 1,
         "disp_file": "lcurve.out",
         "disp_freq": 10,
         "numb_test": 1,
-        "save_freq": 100,
-        "_comment": "that's all"
-    },
-    "_comment": "that's all"
+        "save_freq": 100
+    }
 }

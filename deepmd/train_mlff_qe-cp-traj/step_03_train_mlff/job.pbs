@@ -59,14 +59,14 @@ fi
 # https://docs.deepmodeling.com/projects/deepmd/en/master/train/parallel-training.html
 # See also OMP_NUM_THREADS and TF_INTER_OP_PARALLELISM_THREADS per:
 # https://docs.deepmodeling.com/projects/deepmd/en/master/troubleshooting/howtoset_num_nodes.html
-# horovodrun -np $PBS_NP dp train --mpi-log=master ./se_e2_r_input.json
+# horovodrun -np $PBS_NP dp train --mpi-log=master ./dp_train_input.json
 
 export OMP_NUM_THREADS=1
 export TF_INTRA_OP_PARALLELISM_THREADS=1
 export TF_INTER_OP_PARALLELISM_THREADS=1
 
 # run the training command
-dp train ./se_e2_r_input.json -l train.log | tee train.log
+dp train ./dp_train_input.json -l train.log | tee train.log
 
 # freeze the model checkpoints
 dp freeze -o graph.pb -l freeze.log | tee freeze.log
