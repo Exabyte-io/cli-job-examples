@@ -60,7 +60,7 @@ Important notes:
 
 ### 2.1. Ab-initio Molecular Dynamics.
 
-Perform ab-initio molecular dynamics calculation using Quantum ESPRESSO `cp.x` program. For input files see under `espresso/cp.x`. We can run the calculation by using Car-Parrinello molecular dynamics with Quantum Espresso.
+Perform ab-initio molecular dynamics calculation using Quantum ESPRESSO `cp.x` program. For input files see under `espresso/cp.x`. We can run the calculation by using Car-Parrinello molecular dynamics with Quantum Espresso similar to example from Ref [^3].
 
 > [!NOTE]
 > We have set prefix "generate_dft_data" to be the same as the base input filename "generate_dft_data.in". This way we get the same base file names (`{prefix}.???`) for other output files. When loading data using DeepMD `dpdata` tool, it expects the base names for various input files to be the same.
@@ -132,3 +132,4 @@ print(water.get_positions())
 
 [^1]: [DeePMD-kit: A deep learning package for many-body potential energy representation and molecular dynamic](https://doi.org/10.1016/j.cpc.2018.03.016); ([arXiv](https://arxiv.org/abs/1712.03641)).
 [^2]: [DeePMD-kit: Getting Started](https://docs.deepmodeling.com/projects/deepmd/en/v2.0.0.b4/getting-started.html#)
+[^3]: [Quantum ESPRESSO: cp.x User guide](https://www.quantum-espresso.org/Doc/user_guide_PDF/cp_user_guide.pdf)
