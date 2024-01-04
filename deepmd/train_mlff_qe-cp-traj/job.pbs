@@ -37,11 +37,9 @@
 
 cd $PBS_O_WORKDIR
 
-# Use the run script and wait for completion
-# PROJECT_NAME=${PROJECT_NAME:-"seminar-default"}
-
-# Uncomment the below to modify the defaults.
-# see `settings.sh` for more paramaters.
+#  Use the run script and wait for completion
+#  Uncomment the below to modify the defaults.
+#  see `settings.sh` for more paramaters.
 # QUEUE="D"                     \
 # WALLTIME="00:01:00:00"        \
 # NODES=1                       \
