@@ -33,7 +33,7 @@ echo "Use 'qstat' to check the status of the jobs."
 echo "Use 'watch -n 5 ls -lhtra */output' to periodically check output directories of the jobs."
 
 if [ ! -z "$WAIT_FOR_COMPLETION" ]; then
-    while ! ls $LAST_STEP* | grep $JOB_ID_NUMBER &> /dev/null && ((SECONDS <= $WAIT_TIMEOUT)); do
+    while ! ls $LAST_STEP_NAME_PREFIX* | grep $JOB_ID_NUMBER &> /dev/null && ((SECONDS <= $WAIT_TIMEOUT)); do
         printf "%0.s=" {1..80}
         echo
         echo "Waiting for the last job $JOB_ID to finish: ${SECONDS} of ${WAIT_TIMEOUT} seconds elapsed."
