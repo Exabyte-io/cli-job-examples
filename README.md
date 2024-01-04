@@ -6,17 +6,16 @@ corresponding [documentation](https://docs.mat3ra.com/data-on-disk/directories/#
 can also be used outside the platform as a standalone tool. The main goal of the repository is to provide a quick start
 for the users.
 
-| Simulation Engine | Folder                                                       | Description                                                                                                                                              |
-|-------------------|--------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Quantum ESPRESSO  | [espresso/pw.x](espresso/pw.x/)                              | Self-consistent total energy calculation for FCC Silicon with Quantum ESPRESSO (QE) pw.x.                                                                
-| VASP              | [vasp/](vasp/)                                               | Self-consistent total energy calculation for FCC Silicon with VASP (same as QE above).                                                                   
-| Quantum ESPRESSO  | [espresso/cp.x](espresso/cp.x)                               | Car-Parinello Molecular Dynamics run with QE cp.x using Wannier functions. This MD trajectory is also used as a reference for the DeePMD use case below. 
-| DeePMD            | [deepmd/train_mlff_qe-cp-traj](deepmd/train_mlff_qe-cp-traj) | Constructing Machine-learned Force Field using ab-initio data, neural networks, and further deployment using molecular dynamics package (LAMMPS).        
-| LAMMPS            | [lammps/](lammps/)                                           | Basic Molecular Dyanmics run with LAMMPS for Copper using Lennard-Jones potential or EAM potential.                                                      
-| GROMACS           | [gromacs/cpu-double](gromacs/cpu-double)                     | Basic Molecular Dyanmics run with GROMACS for multiple computational setups: CPU single and double-precision, and GPU single precision.                  
-| NWChem            | [nwchem/](nwchem/)                                           | Basic Total Energy DFT calculation with NWChem for a water molecule.                                                                                     
-| SISSO             | [sisso/README.md](sisso/README.md)                           | Example SISSO run. Consult README.md for more details.                                                                                                   
-
+| Simulation Engine | Folder                                                                 | Description                                                                                                                                              |
+|-------------------|------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Quantum ESPRESSO  | [espresso/pw.x](espresso/pw.x/job.pbs)                                 | Self-consistent total energy calculation for FCC Silicon with Quantum ESPRESSO (QE) pw.x.                                                                
+| VASP              | [vasp/](vasp/job.pbs)                                                  | Self-consistent total energy calculation for FCC Silicon with VASP (same as QE above).                                                                   
+| Quantum ESPRESSO  | [espresso/cp.x](espresso/cp.x/job.pbs)                                 | Car-Parinello Molecular Dynamics run with QE cp.x using Wannier functions. This MD trajectory is also used as a reference for the DeePMD use case below. 
+| DeePMD            | [deepmd/train_mlff_qe-cp-traj](deepmd/train_mlff_qe-cp-traj/README.md) | Constructing Machine-learned Force Field using ab-initio data, neural networks, and further deployment using molecular dynamics package (LAMMPS).        
+| LAMMPS            | [lammps/](lammps/README.md)                                            | Basic Molecular Dynamics run with LAMMPS for Copper using Lennard-Jones potential or EAM potential.                                                      
+| GROMACS           | [gromacs/cpu-double](gromacs/cpu-double)                               | Basic Molecular Dynamics run with GROMACS for multiple computational setups: CPU single and double-precision, and GPU single precision.                  
+| NWChem            | [nwchem/](nwchem/job.pbs)                                              | Basic Total Energy DFT calculation with NWChem for a water molecule.                                                                                     
+| SISSO             | [sisso/](sisso/README.md)                                              | Example SISSO run. Consult README.md for more details.                                                                                                   
 
 ## 1. Usage
 
@@ -53,7 +52,6 @@ or
 ```bash
 git clone https://github.com/exabyte-io/cli-job-examples.git
 ```
-
 
 ## 2. Conventions.
 
@@ -108,7 +106,6 @@ output of the job with the reference output and to determine if the job has comp
 
 The job script is always named `job.pbs` and is located in the root folder of the use case. The job script is meant to
 be submitted from the root folder of the use case.
-
 
 ## 3. Contribution.
 
