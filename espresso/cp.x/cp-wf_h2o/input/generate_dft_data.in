@@ -1,71 +1,61 @@
-&CONTROL
-  title = "water 32 Molecules - PBE 330K",
-  calculation = 'cp-wf',
-  restart_mode = "from_scratch",
-  prefix = "generate_dft_data",
-  pseudo_dir = '.',
-  outdir = '.',
-  ! Very small number of steps for testing purposes only
-  nstep = 50,
-  isave  = 100,
-  dt = 2.D0,
-  tstress = .true.,
-  tprnfor = .true.,
-  iprint = 1,
-  !ndr = 68,
-  !ndw = 68,
-  ekin_conv_thr = 1.D-6
+&control
+    title = 'water 32 Molecules - PBE 330K'
+    calculation = 'cp-wf'
+    restart_mode = 'from_scratch'
+    prefix = 'generate_dft_data'
+    pseudo_dir = '.'
+    outdir = '.'
+    nstep = 50
+    isave = 100
+    dt = 2.0
+    tstress = .true.
+    tprnfor = .true.
+    iprint = 1
+    ekin_conv_thr = 1e-06
 /
 
-&SYSTEM
-  ibrav     = 1,
-  celldm(1) = 18.6655,
-  nat       = 96,
-  ntyp      = 2,
-  ! Reduced cutoff for testing purposes only, see http://www.pseudo-dojo.org/ for recommended values
-  ecutwfc   = 13.00D0,
-  ecfixed   = 130.D0, ! effective cutoff value
-  q2sigma   = 15.D0,
-  qcutz     = 200.D0,
-  input_dft = 'PBE',
-  tot_charge    = -1
+&system
+    ibrav = 1
+    celldm(1) = 18.6655
+    nat = 96
+    ntyp = 2
+    ecutwfc = 13.0
+    ecfixed = 130.0
+    q2sigma = 15.0
+    qcutz = 200.0
+    input_dft = 'PBE'
+    tot_charge = -1
 /
 
-&ELECTRONS
-  electron_dynamics     = "verlet",
-  emass                 = 100.D0,
-  emass_cutoff          = 25.D0,
-  ortho_max             = 800,
-  electron_maxstep      = 500,
+&electrons
+    electron_dynamics = 'verlet'
+    emass = 100.0
+    emass_cutoff = 25.0
+    ortho_max = 800
+    electron_maxstep = 500
 /
 
-&IONS
-   ion_dynamics     = "verlet",
-   ion_temperature  = 'nose',
-   fnosep           = 60,
-   tempw            = 330,
-   nhpcl            = 4,
-   nhptyp           = 2,
-   ndega            = -3
-   ion_radius(1)    = 1.4
-   ion_radius(2)    = 1.4
+&ions
+    ion_dynamics = 'verlet'
+    ion_temperature = 'nose'
+    fnosep = 60
+    tempw = 330
+    nhpcl = 4
+    nhptyp = 2
+    ndega = -3
+    ion_radius(1:2) = 1.4, 1.4
 /
 
-&WANNIER
-  nit    =  60,
-  calwf  =   3,
-  tolw   =   1.D-6,
-  nsteps =   50,
-  adapt  = .FALSE.
-  wfdt   = 2.0D0,
-  wf_q   = 500.D0,
-  wf_friction = 0.3d0,
+&wannier
+    nit = 60
+    calwf = 3
+    tolw = 1e-06
+    nsteps = 50
+    adapt = .false.
+    wfdt = 2.0
+    wf_q = 500.0
+    wf_friction = 0.3
 /
-
-!REF_CELL_PARAMETERS {bohr}
-!   18.6655   0.00000000    0.00000000
-!   0.00    18.6655         0.00
-!   0.00    0.00          18.6655
 
 ATOMIC_SPECIES
  O  15.999   O_ONCV_PBE-SG15-1.2.upf
