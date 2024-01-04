@@ -15,6 +15,7 @@ for the users.
 | LAMMPS            | [lammps/](lammps/README.md)                                            | Basic Molecular Dynamics run with LAMMPS for Copper using Lennard-Jones potential or EAM potential.                                                      
 | GROMACS           | [gromacs/cpu-double](gromacs/cpu-double)                               | Basic Molecular Dynamics run with GROMACS for multiple computational setups: CPU single and double-precision, and GPU single precision.                  
 | NWChem            | [nwchem/](nwchem/job.pbs)                                              | Basic Total Energy DFT calculation with NWChem for a water molecule.                                                                                     
+| CP2K              | [cp2k/](cp2k/job.pbs)                                                  | Basic Total Energy DFT calculation with NWChem for Si.                                                                                                   
 | SISSO             | [sisso/](sisso/README.md)                                              | Example SISSO run. Consult README.md for more details.                                                                                                   
 
 ## 1. Usage
