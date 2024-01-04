@@ -18,7 +18,8 @@ PPN=${PPN:-1}
 JOB_NAME_PREFIX=${JOB_NAME_PREFIX:-"DeepMD-MLFF"}
 EMAIL=${EMAIL:-"info@mat3ra.com"}
 WAIT_FOR_COMPLETION=${WAIT_FOR_COMPLETION:-""}
-WAIT_TIMEOUT=${WAIT_TIMEOUT:-1800}  # 30 minutes.
+WAIT_TIMEOUT=${WAIT_TIMEOUT:-1800}              # 30 minutes.
+WAIT_POLL_INTERVAL=${WAIT_POLL_INTERVAL:-5}     # 5 sec.
 
 # ---------------------------------------------------------------- #
 #  Util function(s) follow below. Not intended to be modified.     #
