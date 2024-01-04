@@ -1,0 +1,49 @@
+#!/bin/bash
+# ---------------------------------------------------------------- #
+#                                                                  #
+#  Example job submission script for Mat3ra.com platform           #
+#                                                                  #
+#  Shows resource manager directives for:                          #
+#                                                                  #
+#    1. the name of the job                (-N)                    #
+#    2. the number of nodes to be used     (-l nodes=)             #
+#    3. the number of processors per node  (-l ppn=)               #
+#    4. the walltime in dd:hh:mm:ss format (-l walltime=)          #
+#    5. queue                              (-q) D, OR, OF, SR, SF  #
+#    6. merging standard output and error  (-j oe)                 #
+#    7. email about job abort, begin, end  (-m abe)                #
+#    8. email address to use               (-M)                    #
+#                                                                  #
+#  For more information visit https://docs.mat3ra.com/cli/jobs     #
+# ---------------------------------------------------------------- #
+
+#PBS -N DeepMD-MLFF-Control
+#PBS -j oe
+#PBS -l nodes=1
+#PBS -l ppn=1
+#PBS -l walltime=00:01:00:00
+#PBS -q D
+#PBS -m abe
+#PBS -M info@mat3ra.com
+##PBS -W depend=afterok:JOB_ID_TO_WAIT_FOR
+#
+## Uncomment the line below and put a desired project name, e.g.:
+## "seminar-default" or "john-project"
+## NOTE: this is required when using organizational accounts.
+## more at https://docs.exabyte.io/jobs-cli/batch-scripts/directives/.
+## The job will be charged to the corresponding project.
+## When commented out, the default project for user is assumed.
+##PBS -A ACCOUNTING_PROJECT_NAME
+
+cd $PBS_O_WORKDIR
+
+# Use the run script and wait for completion
+# PROJECT_NAME=${PROJECT_NAME:-"seminar-default"}
+
+# Uncomment the below to modify the defaults.
+# see `settings.sh` for more paramaters.
+# QUEUE="D"               \
+# WALLTIME="00:01:00:00"  \
+# NODES=1                 \
+# PPN=1                   \
+WAIT_FOR_COMPLETION=1 sh run.sh
