@@ -33,7 +33,7 @@
 ## more at https://docs.exabyte.io/jobs-cli/batch-scripts/directives/.
 ## The job will be charged to the corresponding project.
 ## When commented out, the default project for user is assumed.
-##PBS -A seminar-default
+##PBS -A ACCOUNTING_PROJECT_NAME
 
 # load module
 module load espresso/7.2-g-11.2.0-ompi-4.1.1-libxc-6.2.0

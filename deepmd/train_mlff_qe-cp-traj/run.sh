@@ -8,45 +8,37 @@
 #  For more information visit https://docs.exabyte.io/cli/jobs     #
 # ---------------------------------------------------------------- #
 
-set_dependency_for_file_on_job_id() {
-    FILE=$1
-    JOB_ID=$2
-    if [[ ! -z $JOB_ID ]]; then
-        sed "s/##PBS -W/#PBS -W/g" $FILE > "$FILE.with_dependency"
-        sed -i "s/JOB_ID_TO_WAIT_FOR/${JOB_ID}/g" "$FILE.with_dependency"
-    else
-        cp $FILE $FILE.with_dependency
-    fi
-}
+source ./settings.sh
 
-echo "Submitting the job for step_01"
-cd step_01*
-    # Create a "fictitious" copy of the job script and set name
-    set_dependency_for_file_on_job_id job.pbs
-    sed -i "s/QE-CP.X-WF-H2O-32/DeepMD-MLFF-Step-01/g" job.pbs.with_dependency
-    JOB_ID_STEP_01=$(qsub job.pbs)
-cd - &> /dev/null
+STEPS=(
+    "step_01"
+    "step_02"
+    "step_03"
+    "step_04"
+)
 
-echo "Submitting the job for step_02"
-cd step_02*
-    set_dependency_for_file_on_job_id job.pbs $JOB_ID_STEP_01
-    JOB_ID_STEP_02=$(qsub job.pbs.with_dependency)
-cd - &> /dev/null
+for step_name in ${STEPS[@]}; do
+    cd $step_name*
+        JOB_SCRIPT=$(create_job_script_with_with_dependency $step_name job.pbs $JOB_ID)
+        JOB_ID=$(qsub $JOB_SCRIPT)
+        echo "Submitted job for $step_name with id $JOB_ID."
+    cd - &> /dev/null
+done
 
-echo "Submitting the job for step_03"
-cd step_03*
-    set_dependency_for_file_on_job_id job.pbs $JOB_ID_STEP_02
-    JOB_ID_STEP_03=$(qsub job.pbs.with_dependency)
-cd - &> /dev/null
+# Get the job id number from the job id string, such as "94854.master-production-20160630-cluster-001...."
+JOB_ID_NUMBER=${JID%%.*}
+LAST_STEP_NAME_PREFIX=./${STEPS[-1]}/
 
-echo "Submitting the job for step_04"
-cd step_04*
-    set_dependency_for_file_on_job_id job.pbs $JOB_ID_STEP_03
-    JOB_ID_STEP_04=$(qsub job.pbs.with_dependency)
-cd - &> /dev/null
-
-echo "Finished submitting jobs for $JOB_ID_STEP_01, $JOB_ID_STEP_02, $JOB_ID_STEP_03, $JOB_ID_STEP_04."
-
-echo "Waiting for the last job to finish..."
 echo "Use 'qstat' to check the status of the jobs."
-echo "Use 'watch -n 5 ls -lhtra step_0?*/output' to check the output directories of the jobs."
+echo "Use 'watch -n 5 ls -lhtra */output' to periodically check output directories of the jobs."
+
+if [ ! -z "$WAIT_FOR_COMPLETION" ]; then
+    while ! ls $LAST_STEP/* | grep $JOB_ID_NUMBER &> /dev/null && ((SECONDS <= $WAIT_TIMEOUT)); do
+        echo "Waiting for the last job $JOB_ID to finish: ${SECONDS} of ${WAIT_TIMEOUT}..."
+        ls -lhtra */output
+        sleep 5
+    done
+else
+    echo "Submitted jobs and exiting."
+fi
+
