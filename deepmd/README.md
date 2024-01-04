@@ -96,7 +96,7 @@ evaluate the energy of each frame in the LAMMPS trajectory.
 ```py
 import dpdata
 
-data = dpdata.System('water.dump', fmt="lammps/dump", type_map=["O", "H"])
+data = dpdata.System('structure.dump', fmt="lammps/dump", type_map=["O", "H"])
 d_predict = data.predict(dp="../model_training/results/graph.pb")
 print(d_predict["energies"])
 ```
