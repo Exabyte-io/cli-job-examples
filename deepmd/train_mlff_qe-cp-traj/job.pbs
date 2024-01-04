@@ -42,8 +42,9 @@ cd $PBS_O_WORKDIR
 
 # Uncomment the below to modify the defaults.
 # see `settings.sh` for more paramaters.
-# QUEUE="D"               \
-# WALLTIME="00:01:00:00"  \
-# NODES=1                 \
-# PPN=1                   \
+# QUEUE="D"                     \
+# WALLTIME="00:01:00:00"        \
+# NODES=1                       \
+# PPN=1                         \
+# PROJECT_NAME=seminar-default  \
 WAIT_FOR_COMPLETION=1 sh run.sh
