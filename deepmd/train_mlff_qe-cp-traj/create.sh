@@ -10,7 +10,7 @@
 #  step_01                                                         #
 # ---------------------------------------------------------------- #
 PREFIX=./step_01/input/
-
+ACCOUNT_NAME="seminar"
 cp /dropbox/${ACCOUNT_NAME}/pseudopotentials/O_ONCV_PBE-SG15-1.2.upf $PREFIX/
 cp /dropbox/${ACCOUNT_NAME}/pseudopotentials/H_ONCV_PBE-SG15-1.2.upf $PREFIX/
 
