@@ -5,7 +5,7 @@
 #                                                                  #
 #  Submits jobs in a sequence and make them wait for one another   #
 #                                                                  #
-#  For more information visit https://docs.exabyte.io/cli/jobs     #
+#  For more information visit https://docs.mat3ra.com/cli/jobs     #
 # ---------------------------------------------------------------- #
 
 source ./settings.sh
