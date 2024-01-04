@@ -36,7 +36,7 @@ if [ ! -z "$WAIT_FOR_COMPLETION" ]; then
     while ! ls $LAST_STEP/* | grep $JOB_ID_NUMBER &> /dev/null && ((SECONDS <= $WAIT_TIMEOUT)); do
         printf "%0.s=" {1..80}
         echo
-        echo "Waiting for the last job $JOB_ID to finish: ${SECONDS} of ${WAIT_TIMEOUT}...\n"
+        echo "Waiting for the last job $JOB_ID to finish: ${SECONDS} of ${WAIT_TIMEOUT} seconds elapsed."
         echo
         printf "%0.s=" {1..80}
         ls -lhtra ./*/output
