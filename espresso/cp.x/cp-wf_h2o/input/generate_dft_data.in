@@ -2,7 +2,7 @@
   title = "water 32 Molecules - PBE 330K",
   calculation = 'cp-wf',
   restart_mode = "from_scratch",
-  prefix = "h2o_32",
+  prefix = "generate_dft_data",
   pseudo_dir = '.',
   outdir = '.',
   ! Very small number of steps for testing purposes only
