@@ -1,0 +1,75 @@
+#!/bin/bash
+# ---------------------------------------------------------------- #
+#                                                                  #
+#  Example job submission script for Mat3ra.com platform           #
+#                                                                  #
+#  Shows resource manager directives for:                          #
+#                                                                  #
+#    1. the name of the job                (-N)                    #
+#    2. the number of nodes to be used     (-l nodes=)             #
+#    3. the number of processors per node  (-l ppn=)               #
+#    4. the walltime in dd:hh:mm:ss format (-l walltime=)          #
+#    5. queue                              (-q) D, OR, OF, SR, SF  #
+#    6. merging standard output and error  (-j oe)                 #
+#    7. email about job abort, begin, end  (-m abe)                #
+#    8. email address to use               (-M)                    #
+#                                                                  #
+#  For more information visit https://docs.mat3ra.com/cli/jobs     #
+# ---------------------------------------------------------------- #
+
+#PBS -N DeepMD-MLFF-Step-03
+#PBS -j oe
+#PBS -l nodes=1
+#PBS -l ppn=2
+#PBS -l walltime=00:01:00:00
+#PBS -q D
+#PBS -m abe
+#PBS -M info@mat3ra.com
+##PBS -W depend=afterok:JOB_ID_TO_WAIT_FOR
+#
+## Uncomment the line below and put a desired project name, e.g.:
+## "seminar-default" or "john-project"
+## NOTE: this is required when using organizational accounts.
+## more at https://docs.mat3ra.com/jobs-cli/batch-scripts/directives/.
+## The job will be charged to the corresponding project.
+## When commented out, the default project for user is assumed.
+##PBS -A ACCOUNTING_PROJECT_NAME
+
+# load module
+module load deepmd/deepmd-2.0.2
+
+# go to the job working directory
+cd $PBS_O_WORKDIR
+
+# link input sources
+cd output
+ln -sf ../input/* .
+PREVIOUS_STEP_OUTPUT_PATH="../../step_02_preprocess_dft_data/output${OUTPUT_POSTFIX}"
+if [ ! -d "$PREVIOUS_STEP_OUTPUT_PATH/training" ]; then
+    echo "ERROR: Required file(s) from ${PREVIOUS_STEP_OUTPUT_PATH} not found."
+    ls -l "$PREVIOUS_STEP_OUTPUT_PATH"
+    exit 1
+else
+    ln -sf "$PREVIOUS_STEP_OUTPUT_PATH/training" .
+    ln -sf "$PREVIOUS_STEP_OUTPUT_PATH/validation" .
+fi
+
+# By default, dp train will use GPU(s).
+# CPU Parallelism can be used using MPI/horovod.
+# https://docs.deepmodeling.com/projects/deepmd/en/master/train/parallel-training.html
+# See also OMP_NUM_THREADS and TF_INTER_OP_PARALLELISM_THREADS per:
+# https://docs.deepmodeling.com/projects/deepmd/en/master/troubleshooting/howtoset_num_nodes.html
+# horovodrun -np $PBS_NP dp train --mpi-log=master ./dp_train_input.json
+
+export OMP_NUM_THREADS=1
+export TF_INTRA_OP_PARALLELISM_THREADS=1
+export TF_INTER_OP_PARALLELISM_THREADS=1
+
+# run the training command
+dp train ./dp_train_input.json -l train.log | tee train.log
+
+# freeze the model checkpoints
+dp freeze -o graph.pb -l freeze.log | tee freeze.log
+
+# optionally, we could compress the output model file
+# dp compress -i graph.pb -o graph-compress.pb

@@ -18,7 +18,7 @@
 #  For more info visit https://docs.mat3ra.com/jobs-cli/overview/  #
 # ---------------------------------------------------------------- #
 
-#PBS -N GROMACS-TEST
+#PBS -N QE-TEST
 #PBS -j oe
 #PBS -l nodes=1
 #PBS -l ppn=1
@@ -36,13 +36,10 @@
 ##PBS -A <PROJECT_NAME_IN_ACCOUNTING_SYSTEM>
 
 # load module
-module add gromacs/2021.5-g-11.2.0-ompi-4.1.1-openblas-0.3.18-ms
+module add espresso/540-i-174-impi-044
 
 # go to the job working directory
 cd $PBS_O_WORKDIR
 
-# prepare calculation
-gmx_mpi grompp -f pme.mdp
-
 # run the calculation
-mpirun -np $PBS_NP gmx_mpi mdrun -resethway -noconfout -nsteps 4000 -v -pin on -nb cpu > LOG_FILE 2>&1
+mpirun -np $PBS_NP pw.x -in pw.in > pw.out

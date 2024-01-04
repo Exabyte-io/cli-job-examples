@@ -2,7 +2,7 @@
 
 # ---------------------------------------------------------------- #
 #                                                                  #
-#  Example job submission script for Exabyte.io platform           #
+#  Example job submission script for Mat3ra.com platform           #
 #                                                                  #
 #  Shows resource manager directives for:                          #
 #                                                                  #
@@ -25,7 +25,7 @@
 #PBS -l walltime=00:00:10:00
 #PBS -q D
 #PBS -m abe
-#PBS -M info@exabyte.io
+#PBS -M info@mat3ra.com
 #
 ## Uncomment the line below and put a desired project name, e.g.:
 ##      "seminar-default", or "john-projectname".
