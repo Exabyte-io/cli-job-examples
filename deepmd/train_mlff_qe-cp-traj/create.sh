@@ -5,12 +5,16 @@
 #   - /dropbox/${ACCOUNT_NAME}/pseudopotentials/   with psp files  #
 #   - /dropbox/${ACCOUNT_NAME}/structures/   with lammps structure #
 # ---------------------------------------------------------------- #
+ACCOUNT_NAME="seminar"
+PROJECT_NAME="seminar-default"
+
+# Copy cli job example to create subfolders
+cp -Lr ~/job_script_templates/deepmd/train_mlff_qe-cp-traj/* .
 
 # ---------------------------------------------------------------- #
 #  step_01                                                         #
 # ---------------------------------------------------------------- #
 PREFIX=./step_01/input/
-ACCOUNT_NAME="seminar"
 cp /dropbox/${ACCOUNT_NAME}/pseudopotentials/O_ONCV_PBE-SG15-1.2.upf $PREFIX/
 cp /dropbox/${ACCOUNT_NAME}/pseudopotentials/H_ONCV_PBE-SG15-1.2.upf $PREFIX/
 
@@ -235,7 +239,7 @@ cat > ${PREFIX}/dp_train_input.json <<EOF
                 5
             ],
             "resnet_dt": false,
-            "seed": 1,
+            "seed": 1
         },
         "fitting_net": {
             "neuron": [
@@ -266,13 +270,13 @@ cat > ${PREFIX}/dp_train_input.json <<EOF
             "systems": [
                 "./training/"
             ],
-            "batch_size": "auto",
+            "batch_size": "auto"
         },
         "validation_data": {
             "systems": [
                 "./validation/"
             ],
-            "batch_size": "auto",
+            "batch_size": "auto"
         },
         "numb_steps": 301,
         "seed": 1,
@@ -282,7 +286,6 @@ cat > ${PREFIX}/dp_train_input.json <<EOF
         "save_freq": 100
     }
 }
-
 EOF
 
 
@@ -319,3 +322,9 @@ run             100
 EOF
 
 cp /dropbox/${ACCOUNT_NAME}/structures/structure.lmp $PREFIX/
+
+
+# ---------------------------------------------------------------- #
+#  Run workflow                                                    #
+# ---------------------------------------------------------------- #
+PROJECT_NAME=${PROJECT_NAME} WAIT_FOR_COMPLETION=1 bash run.sh
