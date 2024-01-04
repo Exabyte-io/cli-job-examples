@@ -18,7 +18,7 @@
                 5
             ],
             "resnet_dt": false,
-            "seed": 1,
+            "seed": 1
         },
         "fitting_net": {
             "neuron": [
@@ -49,13 +49,13 @@
             "systems": [
                 "./training/"
             ],
-            "batch_size": "auto",
+            "batch_size": "auto"
         },
         "validation_data": {
             "systems": [
                 "./validation/"
             ],
-            "batch_size": "auto",
+            "batch_size": "auto"
         },
         "numb_steps": 301,
         "seed": 1,
