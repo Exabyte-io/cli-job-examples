@@ -54,4 +54,4 @@ else
 fi
 
 # run molecular dynamics calculation
-mpirun -n $PBS_NP lmp < in.lammps
+mpirun -n $PBS_NP lmp < in.lammps | tee log.lammps
