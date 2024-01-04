@@ -34,8 +34,10 @@ echo "Use 'watch -n 5 ls -lhtra */output' to periodically check output directori
 
 if [ ! -z "$WAIT_FOR_COMPLETION" ]; then
     while ! ls $LAST_STEP/* | grep $JOB_ID_NUMBER &> /dev/null && ((SECONDS <= $WAIT_TIMEOUT)); do
+        printf "%0.s=" {1..80}
         echo "Waiting for the last job $JOB_ID to finish: ${SECONDS} of ${WAIT_TIMEOUT}..."
-        ls -lhtra */output
+        printf "%0.s=" {1..80}
+        ls -lhtra ./*/output
         sleep 5
     done
 else
