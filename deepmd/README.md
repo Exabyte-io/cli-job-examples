@@ -63,7 +63,7 @@ Important notes:
 Perform ab-initio molecular dynamics calculation using Quantum ESPRESSO `cp.x` program. For input files see under `espresso/cp.x`. We can run the calculation by using Car-Parrinello molecular dynamics with Quantum Espresso.
 
 > [!NOTE]
-> We have set prefix "h2o_32" to be the same as the base input filename "h2o_32.in". This way we get the same base file names (`{prefix}.???`) for other output files. When loading data using DeepMD `dpdata` tool, it expects the base names for various input files to be the same.
+> We have set prefix "generate_dft_data" to be the same as the base input filename "generate_dft_data.in". This way we get the same base file names (`{prefix}.???`) for other output files. When loading data using DeepMD `dpdata` tool, it expects the base names for various input files to be the same.
 
 ### 2.2. Data Conversion and Train/Test Split.
 

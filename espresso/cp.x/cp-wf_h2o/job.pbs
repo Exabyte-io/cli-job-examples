@@ -51,4 +51,4 @@ cd output
 ln -sf ../input/* .
 
 # run the calculation
-mpirun -np $PBS_NP cp.x -in h2o_32.in | tee h2o_32.out
+mpirun -np $PBS_NP cp.x -in generate_dft_data.in | tee generate_dft_data.out
