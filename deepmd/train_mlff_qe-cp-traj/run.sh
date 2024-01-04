@@ -20,9 +20,11 @@ set_dependency_for_file_on_job_id() {
 }
 
 echo "Submitting the job for step_01"
-
 cd step_01*
-JOB_ID_STEP_01=$(qsub job.pbs)
+    # Create a "fictitious" copy of the job script and set name
+    set_dependency_for_file_on_job_id job.pbs
+    sed -i "s/QE-CP.X-WF-H2O-32/DeepMD-MLFF-Step-01/g" job.pbs.with_dependency
+    JOB_ID_STEP_01=$(qsub job.pbs)
 cd - &> /dev/null
 
 echo "Submitting the job for step_02"

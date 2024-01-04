@@ -1,6 +1,6 @@
 # CLI job examples
 
-This repository contains example data for command-line batch jobs with commonly used packages on Exabyte.io [[1,2](#links)].
+This repository contains example data for command-line batch jobs with commonly used packages on Mat3ra.com [[1,2](#links)].
 
 ## Installation
 
@@ -36,9 +36,6 @@ This repository is an [open-source](LICENSE.md) work-in-progress and we welcome 
 ## Links
 
 1. [Mat3ra.com Documentation](https://docs.mat3ra.com)
-
 2. [Command-line Jobs in the Mat3ra.com](https://docs.mat3ra.com/jobs-cli/overview/)
-
 3. [Git Large File Storage](https://git-lfs.github.com/)
-
 4. [GitHub Standard Fork & Pull Request Workflow](https://gist.github.com/Chaser324/ce0505fbed06b947d962)
