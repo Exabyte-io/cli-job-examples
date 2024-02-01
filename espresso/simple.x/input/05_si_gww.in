@@ -17,4 +17,3 @@ ggwin%tau=9.8
 ggwin%n_set_pola=16
 ggwin%outdir='./tmp/'
 /
-

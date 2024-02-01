@@ -1,6 +1,6 @@
 &inputsimple
     simple_in%prefix='si_simple'
-    simple_in%outdir='/cluster-001-home/pranab/simple/tmp/'
+    simple_in%outdir='./tmp/'
     simple_in%scissor=0.6
     simple_in%spin_state=1
     simple_in%h_level=3
