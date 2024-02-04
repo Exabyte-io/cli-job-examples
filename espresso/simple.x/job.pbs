@@ -60,5 +60,5 @@ mpirun -np $PBS_NP gww.x         < 05_si_gww.in        > 05_si_gww.out
 mpirun -np $PBS_NP pw.x         -i 06_si_nscf_k.in     > 06_si_nscf_k.out
 mpirun -np $PBS_NP simple.x      < 07_si_simple.in     > 07_si_simple.out
 mpirun -np $PBS_NP simple_bse.x  < 08_si_simple_bse.in > 08_si_simple_bse.out
-# currently, below post processing tool is not installed in mat3ra cluster
-# mpirun -np $PBS_NP abcoeff_to_eps.x < 09_si_abcoeff_to_eps.in > 09_si_abcoeff_to_eps.tmp
+# currently, below post processing tool is not installed in mat3ra clusters
+# abcoeff_to_eps.x < 09_si_abcoeff_to_eps.in > 09_si_abcoeff_to_eps.tmp
