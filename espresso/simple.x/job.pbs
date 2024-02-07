@@ -19,7 +19,6 @@
 
 #PBS -N Si_SIMPLE
 #PBS -j oe
-##PBS -q comp-002-zone-a-production-20160630-cluster-007.exabyte.io
 #PBS -l nodes=1
 #PBS -l ppn=4
 #PBS -l walltime=00:01:00:00
@@ -33,7 +32,7 @@
 ## more at https://docs.exabyte.io/jobs-cli/batch-scripts/directives/.
 ## The job will be charged to the corresponding project.
 ## When commented out, the default project for user is assumed.
-#PBS -A seminar-espresso-tutorials
+##PBS -A seminar-espresso-tutorials
 
 # load module
 module load espresso/7.2-g-11.2.0-ompi-4.1.1-libxc-6.2.2
