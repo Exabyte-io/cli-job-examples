@@ -1,7 +1,8 @@
 #!/bin/bash
+
 # ---------------------------------------------------------------- #
 #                                                                  #
-#  Example job submission script for Mat3ra.com platform           #
+#  Example job submission script for Mat3ra.com platform          #
 #                                                                  #
 #  Shows resource manager directives for:                          #
 #                                                                  #
@@ -17,12 +18,13 @@
 #  For more info visit https://docs.mat3ra.com/jobs-cli/overview/  #
 # ---------------------------------------------------------------- #
 
-#PBS -N Si_SIMPLE
+#PBS -N QE-GPU
 #PBS -j oe
+##PBS -q comp-002-zone-a-production-20160630-cluster-007.exabyte.io
 #PBS -l nodes=1
-#PBS -l ppn=4
+#PBS -l ppn=8
 #PBS -l walltime=00:01:00:00
-#PBS -q D
+#PBS -q GOF
 ##PBS -m abe
 ##PBS -M info@exabyte.io
 #
@@ -35,28 +37,10 @@
 ##PBS -A <PROJECT_NAME_IN_ACCOUNTING_SYSTEM>
 
 # load module
-module load espresso/7.2-g-11.2.0-ompi-4.1.1-libxc-6.2.2
+module load espresso/7.4-cuda-12.4-cc-70
+export OMP_NUM_THREADS=8
 
 # go to the job working directory
 cd $PBS_O_WORKDIR
 
-# NOTE due to issues with OpenMPI 4.1.1 we currently need to copy
-# the PBS_NODEFILE into the .exabyte hidden folder in the WORKDIR
-# in order for MPI to be correctly configured.
-cp $PBS_NODEFILE .exabyte/$PBS_JOBID
-
-# link input sources
-cd output
-ln -sf ../input/* .
-
-# run the calculations
-mpirun -np $PBS_NP pw.x         -i 01_si_scf_k.in      > 01_si_scf_k.out
-mpirun -np $PBS_NP head.x       -i 02_si_head.in       > 02_si_head.out
-mpirun -np $PBS_NP pw.x         -i 03_si_nscf.in       > 03_si_nscf.out
-mpirun -np $PBS_NP pw4gww.x     -i 04_si_pw4gww.in     > 04_si_pw4gww.out
-# `-i filename` may not work with GWW executables, please use std redirection < instead
-mpirun -np $PBS_NP gww.x         < 05_si_gww.in        > 05_si_gww.out
-mpirun -np $PBS_NP pw.x         -i 06_si_nscf_k.in     > 06_si_nscf_k.out
-mpirun -np $PBS_NP simple.x      < 07_si_simple.in     > 07_si_simple.out
-mpirun -np $PBS_NP simple_bse.x  < 08_si_simple_bse.in > 08_si_simple_bse.out
-abcoeff_to_eps.x < 09_si_abcoeff_to_eps.in > 09_si_abcoeff_to_eps.tmp
+mpirun -np 1 pw.x -npool 1 -ndiag 1 -in pw.cuo.scf.in > pw.cuo.gpu.scf.out
