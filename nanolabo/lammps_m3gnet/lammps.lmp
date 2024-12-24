@@ -1,0 +1,29 @@
+#
+# Defining the system
+#
+units         metal
+boundary      p p p
+atom_style    atomic
+pair_style    m3gnet/d3/gpu /export/compute/software/applications/NanoLabo/NanoLabo-3.0/bin/m3gnet
+read_data     lammps.dat
+pair_coeff    * * M3GNet-MP-2021.2.8-PES Pt O H
+
+group         works id 1:12 25:26
+group         atoms000 id 13:24
+velocity      atoms000 set 0.0 0.0 0.0
+fix           freeze000 atoms000 setforce 0.0 0.0 0.0
+
+#
+# Setting for output
+#
+dump          Dump all custom 10 output/lammps.dmp.* id type x y z ix iy iz vx vy vz
+thermo_style  custom step time cpu pe ke etotal enthalpy temp press vol density cella cellb cellc cellalpha cellbeta cellgamma
+thermo        5
+
+#
+# Setting to run MD or minimization
+#
+## >>> SCHEME-1
+minimize      1.0e-10 1.0e-8 10000 100000
+## <<<
+
