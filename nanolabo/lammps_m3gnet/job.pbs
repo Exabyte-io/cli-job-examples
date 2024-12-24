@@ -19,7 +19,6 @@
 
 #PBS -N m3gnet
 #PBS -j oe
-##PBS -q comp-002-zone-a-production-20160630-cluster-007.exabyte.io
 #PBS -l nodes=1
 #PBS -l ppn=8
 #PBS -l walltime=00:01:00:00
@@ -32,7 +31,7 @@
 ## NOTE: this is required when using organizational accounts.
 ## more at https://docs.mat3ra.com/jobs-cli/batch-scripts/directives/.
 ## The job will be charged to the corresponding project.
-## When commented out, the default project for user is assumed.
+## When commented out, the default project for the user is assumed.
 ##PBS -A <PROJECT_NAME_IN_ACCOUNTING_SYSTEM>
 
 # load module
@@ -42,7 +41,8 @@ export OMP_NUM_THREADS=8
 # go to the job working directory
 cd $PBS_O_WORKDIR
 
-if [ -d output ]; then rm -rf output; fi
-mkdir output
+# Uncomment to clean up the output directory
+# if [ -d output ]; then rm -rf output; fi
+mkdir -p output
 
 lammps_m3gnet < lammps.lmp | tee output.2.log
