@@ -45,4 +45,4 @@ cd $PBS_O_WORKDIR
 # if [ -d output ]; then rm -rf output; fi
 mkdir -p output
 
-lammps_m3gnet < lammps.lmp | tee output.2.log
+lammps_m3gnet < lammps.lmp | tee output.log
