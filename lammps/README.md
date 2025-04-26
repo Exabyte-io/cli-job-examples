@@ -12,8 +12,8 @@ License Version 2 (GPLv2).
 ## Examples
 
 ### Energy minimization
-An example calculation of energy minimization of two dimensional Lenard-Jones
-melt is available und [emin](./emin) directory.
+An example calculation of energy minimization of two dimensional Lennard-Jones
+melt is available under [emin](./emin) directory.
 
 ### LAMMPS+M3GNet
 The example under the [m3gnet](./m3gnet) directory uses M3GNet pair potential.
