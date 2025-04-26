@@ -9,7 +9,13 @@ Most of the funding for LAMMPS has come from the US Department of Energy (DOE).
 LAMMPS is open-source software distributed under the terms of the GNU Public
 License Version 2 (GPLv2).
 
-# LAMMPS+M3GNet
+## Examples
+
+### Energy minimization
+An example calculation of energy minimization of two dimensional  Lenard-Jones
+melt is available und [emin](./emin) directory.
+
+### LAMMPS+M3GNet
 The example under the [m3gnet](./m3gnet) directory uses M3GNet pair potential.
 
 
