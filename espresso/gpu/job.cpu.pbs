@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # ---------------------------------------------------------------- #
 #                                                                  #
 #  Example job submission script for Mat3ra.com platform           #
@@ -20,7 +19,6 @@
 
 #PBS -N QE-GPU
 #PBS -j oe
-##PBS -q comp-002-zone-a-production-20160630-cluster-007.exabyte.io
 #PBS -l nodes=1
 #PBS -l ppn=8
 #PBS -l walltime=00:01:00:00

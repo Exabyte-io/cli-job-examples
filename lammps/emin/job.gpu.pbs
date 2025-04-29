@@ -17,14 +17,14 @@
 #  For more info visit https://docs.mat3ra.com/jobs-cli/overview/  #
 # ---------------------------------------------------------------- #
 
-#PBS -N QE-GPU
+#PBS -N LAMMPS-GPU
 #PBS -j oe
 #PBS -l nodes=1
 #PBS -l ppn=8
 #PBS -l walltime=00:01:00:00
-#PBS -q GOF
+#PBS -q GSF
 ##PBS -m abe
-##PBS -M info@exabyte.io
+##PBS -M info@mat3ra.com
 #
 ## Uncomment the line below and put a desired project name, e.g.:
 ## "seminar-default" or "john-project"
@@ -35,10 +35,14 @@
 ##PBS -A <PROJECT_NAME_IN_ACCOUNTING_SYSTEM>
 
 # load module
-module load espresso/7.4-cuda-12.4-cc-70
-export OMP_NUM_THREADS=8
+module load lammps/2024.08.29.2-i-2023.1-cuda-12.4
 
 # go to the job working directory
 cd $PBS_O_WORKDIR
-
-mpirun -np 1 pw.x -npool 1 -ndiag 1 -in pw.cuo.scf.in > pw.cuo.gpu.scf.out
+# `-sf gpu` flag selects number of GPUs automatically. It also appends `/gpu` to
+# all supported pair styles. To set number of GPUs explicitly, use `-pk gpu N`.
+# GPU acceleration can be manually set for a pair style in the input file:
+# - pair_style	lj/cut 2.5
+# + pair_style	lj/cut/gpu 2.5
+# logs are written to log.lammps, it can be specified with `-l output.log`
+mpirun -np $PBS_NP lmp -sf gpu -i in.min

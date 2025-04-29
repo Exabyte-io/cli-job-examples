@@ -15,3 +15,6 @@ Time taken by CPU job (8 MPI on 8 CPUs):
 ```
     PWSCF        :  18m 0.56s CPU  18m25.33s WALL
 ```
+
+- A step-by-step guide is available in our [documentation](
+https://docs.mat3ra.com/tutorials/jobs-cli/qe-gpu/).
