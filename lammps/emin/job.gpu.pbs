@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # ---------------------------------------------------------------- #
 #                                                                  #
 #  Example job submission script for Mat3ra.com platform           #
@@ -18,33 +17,32 @@
 #  For more info visit https://docs.mat3ra.com/jobs-cli/overview/  #
 # ---------------------------------------------------------------- #
 
-#PBS -N LAMMPS-TEST
+#PBS -N LAMMPS-GPU
 #PBS -j oe
 #PBS -l nodes=1
-#PBS -l ppn=1
-#PBS -l walltime=00:00:10:00
-#PBS -q D
-#PBS -m abe
+#PBS -l ppn=8
+#PBS -l walltime=00:01:00:00
+#PBS -q GSF
+##PBS -m abe
 ##PBS -M info@mat3ra.com
 #
 ## Uncomment the line below and put a desired project name, e.g.:
-##      "seminar-default", or "john-projectname".
+## "seminar-default" or "john-project"
 ## NOTE: this is required when using organizational accounts.
-## more at https://docs.mat3ra.com/jobs-cli/batch-scripts/directives/
+## more at https://docs.mat3ra.com/jobs-cli/batch-scripts/directives/.
 ## The job will be charged to the corresponding project.
 ## When commented out, the default project for user is assumed.
 ##PBS -A <PROJECT_NAME_IN_ACCOUNTING_SYSTEM>
 
+# load module
+module load lammps/2024.08.29.2-i-2023.1-cuda-12.4
+
 # go to the job working directory
 cd $PBS_O_WORKDIR
-
-module load lammps/12Dec2018-i-14.0.3.174-impi-5.0.2.044
-export LAMMPS_EXECUTABLE=lammps
-
-## Uncomment the lines below module to enable the use of GPU-accelerated version
-## Also, please submit the job to a GPU enabled queue e.g., `#PBS -q GOF`
-# export LAMMPS_EXECUTABLE=lmp
-# module load lammps/2022.01.07-g-11.2.0-ompi-4.1.1-cuda-11.5
-# cp $PBS_NODEFILE .exabyte/$PBS_JOBID
-
-mpirun -np $PBS_NP ${LAMMPS_EXECUTABLE} < in.min
+# `-sf gpu` flag selects number of GPUs automatically. It also appends `/gpu` to
+# all supported pair styles. To set number of GPUs explicitly, use `-pk gpu N`.
+# GPU acceleration can be manually set for a pair style in the input file:
+# - pair_style	lj/cut 2.5
+# + pair_style	lj/cut/gpu 2.5
+# logs are written to log.lammps, it can be specified with `-l output.log`
+mpirun -np $PBS_NP lmp -sf gpu -i in.min
