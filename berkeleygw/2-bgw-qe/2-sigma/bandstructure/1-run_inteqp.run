@@ -1,0 +1,9 @@
+#!/bin/bash -l
+
+# module load berkeleygw-tutorial
+
+# This parallel script launches BGW to interpolate QP corrections.
+
+# srun -n 4 -c 32 --cpu-bind=cores inteqp.real.x &> inteqp.out
+
+$CMD_PREFIX_BGW inteqp.real.x | tee inteqp.out

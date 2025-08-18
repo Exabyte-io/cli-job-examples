@@ -1,0 +1,3 @@
+#!/bin/bash -l
+
+$CMD_PREFIX_QE pw.x -in scf.in | tee scf.out

@@ -1,0 +1,10 @@
+#!/bin/bash -l
+
+# This parallel script launches Quantum ESPRESSO to perform an nscf calculation.
+
+# module load espresso
+
+# srun -n 4 -c 16 --cpu-bind=cores pw.x -npools 4 -in bands.in &> bands.out
+
+
+$CMD_PREFIX_QE pw.x -in bands.in | tee bands.out
