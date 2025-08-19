@@ -4,7 +4,8 @@ set -e
 export OMP_NUM_THREADS=1
 export CMD_PREFIX_QE="mpirun --allow-run-as-root -np 4 apptainer run /root/qe-7.4-gcc-openmpi-openblas.sif"
 export CMD_PREFIX_BGW="mpirun --allow-run-as-root -np 4 apptainer run /root/berkeleygw-4.0-gnu-almalinux9.sif"
-
+# TODO: implement WAIT_FOR_COMPLETION for when the jobs are submitted via PBS
+# See: deepmd/train_mlff_qe-cp-traj/run.sh
 echo "<>------------- 1. DFT calculation using Quantum ESPRESSO -------------<>"
 cd 1-mf-qe
 bash link_files.sh
