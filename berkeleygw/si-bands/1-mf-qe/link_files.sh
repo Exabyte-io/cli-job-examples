@@ -11,8 +11,6 @@ for directory in {2..4}*-*/; do
   cd $directory
   mkdir -p Si.save
   cd Si.save
-  # FHJ: Note that some links may remain broken, but that's fine.
-  # We try to maximize compatibility across different versions of QE.
   ln -sf ../../1-scf/Si.save/charge-density.dat .
   ln -sf ../../1-scf/Si.save/data-file.xml .
   ln -sf ../../1-scf/Si.save/data-file-schema.xml .
