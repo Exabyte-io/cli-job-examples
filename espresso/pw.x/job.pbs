@@ -36,10 +36,12 @@
 ##PBS -A <PROJECT_NAME_IN_ACCOUNTING_SYSTEM>
 
 # load module
-module add espresso/540-i-174-impi-044
+module add espresso/6.3-gcc-openmpi-openblas
 
 # go to the job working directory
 cd $PBS_O_WORKDIR
 
+# EXEC_CMD=apptainer exec --bind /export,/scratch,/dropbox,/cluster-001-share /export/compute/software/applications/espresso/6.3-gcc-openmpi-openblas/image.sif
+
 # run the calculation
-mpirun -np $PBS_NP pw.x -in pw.in > pw.out
+mpirun -np $PBS_NP $EXEC_CMD pw.x -in pw.in > pw.out
