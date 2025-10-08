@@ -9,7 +9,7 @@
     outdir= './'
     wfcdir= './'
     prefix= '__prefix__'
-    pseudo_dir= '/export/share/pseudo/si/gga/pbe/gbrv/1.0/us/'
+    pseudo_dir= '/cluster-001-share/other/pseudo/si/gga/pbe/gbrv/1.0/us/'
 /
 &SYSTEM
     ibrav=0
