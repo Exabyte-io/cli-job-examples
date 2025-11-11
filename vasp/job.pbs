@@ -36,12 +36,13 @@
 ##PBS -A <PROJECT_NAME_IN_ACCOUNTING_SYSTEM>
 
 
-# load module
-module add vasp/535-i-174-impi-044
+# load default vasp module
+module add vasp
 
 # go to the job working directory
 cd $PBS_O_WORKDIR
 
-# run the calculation
-mpirun -np $PBS_NP vasp > vasp.log
+# EXEC_CMD=apptainer exec --bind /export,/scratch,/dropbox /export/compute/software/applications/vasp/5.4.4-gcc-openmpi-openblas-fftw-scalapack/image.sif
 
+# run the calculation
+mpirun -np $PBS_NP $EXEC_CMD vasp > vasp.log
