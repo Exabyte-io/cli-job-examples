@@ -36,7 +36,7 @@
 
 # load module
 module load espresso/7.4.1-cuda-12.8
-export APPTAINERENV_OMP_NUM_THREADS=12
+export APPTAINERENV_OMP_NUM_THREADS=$PBS_NP
 
 # go to the job working directory
 cd $PBS_O_WORKDIR
