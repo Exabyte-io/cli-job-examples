@@ -20,7 +20,7 @@
 #PBS -N QE-GPU
 #PBS -j oe
 #PBS -l nodes=1
-#PBS -l ppn=8
+#PBS -l ppn=12
 #PBS -l walltime=00:01:00:00
 #PBS -q GOF
 ##PBS -m abe
@@ -35,10 +35,10 @@
 ##PBS -A <PROJECT_NAME_IN_ACCOUNTING_SYSTEM>
 
 # load module
-module load espresso/7.3-i-2023.1.0-libxc-6.2.2
+module load espresso/7.4.1-intel-2025.2-libxc-7.0
 export OMP_NUM_THREADS=1
 
 # go to the job working directory
 cd $PBS_O_WORKDIR
 
-mpirun -np 8 pw.x -npool 1 -ndiag 1 -in pw.cuo.scf.in > pw.cuo.cpu.scf.out
+mpirun -np $PBS_NP $EXEC_CMD pw.x -npool 1 -ndiag 1 -in pw.cuo.scf.in > pw.cuo.cpu.scf.out
