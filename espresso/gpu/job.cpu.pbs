@@ -23,6 +23,9 @@
 #PBS -l ppn=12
 #PBS -l walltime=00:01:00:00
 #PBS -q GOF
+## Note: GOF queue is not meant for running for CPU only jobs (please use CPU
+## queues e.g., OR, OF instead), you will be charged for GPU instance. Here we
+## wanted to compare CPU vs. GPU performance on the same hardware.
 ##PBS -m abe
 ##PBS -M info@exabyte.io
 #
