@@ -36,9 +36,13 @@
 
 # load module
 module load espresso/7.4.1-cuda-12.8
-export APPTAINERENV_OMP_NUM_THREADS=$PBS_NP
+
+readonly gpu_count=${1:-$(nvidia-smi --list-gpus | wc -l)}
+export APPTAINERENV_OMP_NUM_THREADS=$(( PBS_NP / gpu_count ))
+
+echo "Running on $gpu_count GPU(s) with $APPTAINERENV_OMP_NUM_THREADS OpenMP threads per MPI task."
 
 # go to the job working directory
 cd $PBS_O_WORKDIR
 
-mpirun -np 1 $EXEC_CMD pw.x -npool 1 -ndiag 1 -in pw.cuo.scf.in > pw.cuo.gpu.scf.out
+mpirun -np ${gpu_count} $EXEC_CMD pw.x -npool 1 -ndiag 1 -in pw.cuo.scf.in > pw.cuo.gpu.scf.out
