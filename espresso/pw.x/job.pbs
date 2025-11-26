@@ -41,7 +41,8 @@ module add espresso
 # go to the job working directory
 cd $PBS_O_WORKDIR
 
-# EXEC_CMD=apptainer exec --bind /export,/scratch,/dropbox /export/compute/software/applications/espresso/6.3-gcc-openmpi-openblas/image.sif
+# EXEC_CMD is set via `module add` above
+# EXEC_CMD="apptainer exec --bind /export,/scratch,/dropbox,/cluster-001-share /export/compute/software/applications/espresso/6.3-gcc-openmpi-openblas/image.sif"
 
 # run the calculation
 mpirun -np $PBS_NP $EXEC_CMD pw.x -in pw.in > pw.out
