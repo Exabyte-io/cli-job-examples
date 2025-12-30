@@ -16,6 +16,7 @@ VASP              | [vasp/](vasp/job.pbs)                            | Self-cons
 DeePMD            | [deepmd/train_mlff_qe-cp-traj](deepmd/README.md) | Constructing Machine-learned Force Field using ab-initio data, neural networks, and further deployment using molecular dynamics package (LAMMPS).
 LAMMPS            | [lammps/](lammps/README.md)                      | Basic Molecular Dynamics run with LAMMPS for Copper using Lennard-Jones potential or EAM potential.
 LAMMPS+M3GNet     | [lammps/m3gnet](lammps/m3gnet/job.pbs)           | LAMMPS using M3GNet pair potential.
+LAMMPS+MatterSim  | [lammps/mattersim](lammps/mattersim/job.pbs)     | LAMMPS using MatterSim pair potential.
 GROMACS           | [gromacs/cpu-double](gromacs/cpu-double)         | Basic Molecular Dynamics run with GROMACS for multiple computational setups: CPU single and double-precision, and GPU single precision.
 NWChem            | [nwchem/](nwchem/job.pbs)                        | Basic Total Energy DFT calculation with NWChem for a water molecule.
 CP2K              | [cp2k/](cp2k/job.pbs)                            | Basic Total Energy DFT calculation with NWChem for Si.
