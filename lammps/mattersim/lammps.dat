@@ -1,5 +1,4 @@
 # This file is created by Advance/NanoLabo.
-# Force-Field: M3GNet
 
       26  atoms
 
@@ -73,4 +72,3 @@
        1  1.950780e+02 # Pt
        2  1.599940e+01 # O
        3  1.007940e+00 # H
-
