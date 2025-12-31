@@ -42,4 +42,4 @@ export OMP_NUM_THREADS=$PBS_NP
 export APPTAINERENV_PREPEND_PATH=/export/compute/software/libraries/nvhpc-25.3-cuda-12.8/Linux_x86_64/25.3/cuda/bin
 export APPTAINERENV_LD_LIBRARY_PATH=/export/compute/software/libraries/nvhpc-25.3-cuda-12.8/Linux_x86_64/25.3/cuda/lib64:\${LD_LIBRARY_PATH}
 
-apptainer exec --nv --bind /export,/cluster-001-share /cluster-001-home/pranab/nanolabo/nanolabo-mattersim.sif lammps_gnnp -i lammps.in
+apptainer exec --nv --bind /export,/cluster-001-share /export/compute/software/applications/nanolabo-mattersim.sif lammps_gnnp -i lammps.in
