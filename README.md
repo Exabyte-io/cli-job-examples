@@ -6,20 +6,21 @@ corresponding [documentation](https://docs.mat3ra.com/data-on-disk/directories/#
 can also be used outside the platform as a standalone tool. The main goal of the repository is to provide a quick start
 for the users.
 
-Simulation Engine | Folder                                           | Description
------------------ | ------------------------------------------------ | -----------
-Quantum ESPRESSO  | [espresso/pw.x](espresso/pw.x/job.pbs)           | Self-consistent total energy calculation for FCC Silicon with Quantum ESPRESSO (QE) pw.x.
-Quantum ESPRESSO  | [espresso/cp.x](espresso/cp.x/cp-wf_h2o/job.pbs) | Car-Parinello Molecular Dynamics run with QE cp.x using Wannier functions. This MD trajectory is also used as a reference for the DeePMD use case below.
-Quantum ESPRESSO  | [espresso/simple.x](espresso/simple.x/job.pbs)   | Optical property calculation using SIMPLE.x code
-Quantum ESPRESSO  | [espresso/gpu](espresso/gpu/job.gpu.pbs)         | CUDA/GPU enabled simulation run
-VASP              | [vasp/](vasp/job.pbs)                            | Self-consistent total energy calculation for FCC Silicon with VASP (same as QE above).
-DeePMD            | [deepmd/train_mlff_qe-cp-traj](deepmd/README.md) | Constructing Machine-learned Force Field using ab-initio data, neural networks, and further deployment using molecular dynamics package (LAMMPS).
-LAMMPS            | [lammps/](lammps/README.md)                      | Basic Molecular Dynamics run with LAMMPS for Copper using Lennard-Jones potential or EAM potential.
-LAMMPS+M3GNet     | [lammps/m3gnet](lammps/m3gnet/job.pbs)           | LAMMPS using M3GNet pair potential.
-GROMACS           | [gromacs/cpu-double](gromacs/cpu-double)         | Basic Molecular Dynamics run with GROMACS for multiple computational setups: CPU single and double-precision, and GPU single precision.
-NWChem            | [nwchem/](nwchem/job.pbs)                        | Basic Total Energy DFT calculation with NWChem for a water molecule.
-CP2K              | [cp2k/](cp2k/job.pbs)                            | Basic Total Energy DFT calculation with NWChem for Si.
-SISSO             | [sisso/](sisso/README.md)                        | Example SISSO run. Consult README.md for more details.
+Simulation Engine | Folder                                               | Description
+----------------- | ---------------------------------------------------- | -----------
+Quantum ESPRESSO  | [espresso/pw.x](espresso/pw.x/job.pbs)               | Self-consistent total energy calculation for FCC Silicon with Quantum ESPRESSO (QE) pw.x.
+Quantum ESPRESSO  | [espresso/cp.x](espresso/cp.x/cp-wf_h2o/job.pbs)     | Car-Parinello Molecular Dynamics run with QE cp.x using Wannier functions. This MD trajectory is also used as a reference for the DeePMD use case below.
+Quantum ESPRESSO  | [espresso/simple.x](espresso/simple.x/job.pbs)       | Optical property calculation using SIMPLE.x code
+Quantum ESPRESSO  | [espresso/gpu](espresso/gpu/job.gpu.pbs)             | CUDA/GPU enabled simulation run
+BerkeleyGW        | [berkeleygw/si-bands](berkeleygw/si-bands/README.md) | Silicon quasiparticle bandstructure using BerkeleyGW code
+VASP              | [vasp/](vasp/job.pbs)                                | Self-consistent total energy calculation for FCC Silicon with VASP (same as QE above).
+DeePMD            | [deepmd/train_mlff_qe-cp-traj](deepmd/README.md)     | Constructing Machine-learned Force Field using ab-initio data, neural networks, and further deployment using molecular dynamics package (LAMMPS).
+LAMMPS            | [lammps/](lammps/README.md)                          | Basic Molecular Dynamics run with LAMMPS for Copper using Lennard-Jones potential or EAM potential.
+LAMMPS+M3GNet     | [lammps/m3gnet](lammps/m3gnet/job.pbs)               | LAMMPS using M3GNet pair potential.
+GROMACS           | [gromacs/cpu-double](gromacs/cpu-double)             | Basic Molecular Dynamics run with GROMACS for multiple computational setups: CPU single and double-precision, and GPU single precision.
+NWChem            | [nwchem/](nwchem/job.pbs)                            | Basic Total Energy DFT calculation with NWChem for a water molecule.
+CP2K              | [cp2k/](cp2k/job.pbs)                                | Basic Total Energy DFT calculation with NWChem for Si.
+SISSO             | [sisso/](sisso/README.md)                            | Example SISSO run. Consult README.md for more details.
 
 ## 1. Usage
 
