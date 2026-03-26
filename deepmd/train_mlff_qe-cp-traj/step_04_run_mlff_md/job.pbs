@@ -35,8 +35,8 @@
 ## When commented out, the default project for user is assumed.
 ##PBS -A ACCOUNTING_PROJECT_NAME
 
-# load module
-module load deepmd/deepmd-2.0.2
+# load deepmd default module
+module load deepmd
 
 # go to the job working directory
 cd $PBS_O_WORKDIR
@@ -54,4 +54,4 @@ else
 fi
 
 # run molecular dynamics calculation
-mpirun -n $PBS_NP lmp < in.lammps | tee log.lammps
+$EXEC_CMD mpirun -np $PBS_NP lmp < in.lammps | tee log.lammps
