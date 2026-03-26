@@ -35,7 +35,7 @@
 ##PBS -A <PROJECT_NAME_IN_ACCOUNTING_SYSTEM>
 
 # load module
-module load espresso/7.4.1-cuda-12.8
+module load espresso/7.5-cuda-12.8
 
 readonly gpu_count=${1:-$(nvidia-smi --list-gpus | wc -l)}
 export APPTAINERENV_OMP_NUM_THREADS=$(( PBS_NP / gpu_count ))
