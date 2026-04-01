@@ -54,4 +54,4 @@ else
 fi
 
 # run molecular dynamics calculation
-$EXEC_CMD mpirun -np $PBS_NP lmp < in.lammps | tee log.lammps
+$EXEC_CMD mpirun -np $PBS_NP lmp -in in.lammps | tee log.lammps
