@@ -50,8 +50,5 @@ cp $PBS_NODEFILE .exabyte/$PBS_JOBID
 cd output
 ln -sf ../input/* .
 
-# launch apptainer from the parent directory to avoid issues with symlink resolution
-cd ..
-
 # run the calculation
-mpirun -np $PBS_NP $EXEC_CMD bash -c 'cd output && cp.x -in generate_dft_data.in' | tee generate_dft_data.out
+mpirun -np $PBS_NP $EXEC_CMD cp.x -in generate_dft_data.in | tee generate_dft_data.out
