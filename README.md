@@ -12,6 +12,7 @@ Quantum ESPRESSO  | [espresso/pw.x](espresso/pw.x/job.pbs)           | Self-cons
 Quantum ESPRESSO  | [espresso/cp.x](espresso/cp.x/cp-wf_h2o/job.pbs) | Car-Parinello Molecular Dynamics run with QE cp.x using Wannier functions. This MD trajectory is also used as a reference for the DeePMD use case below.
 Quantum ESPRESSO  | [espresso/simple.x](espresso/simple.x/job.pbs)   | Optical property calculation using SIMPLE.x code
 Quantum ESPRESSO  | [espresso/gpu](espresso/gpu/job.gpu.pbs)         | CUDA/GPU enabled simulation run
+Quantum ESPRESSO  | [espresso/neb.x](espresso/neb.x/job.neb.pbs)     | Nudged Elastic Band calculation with QE neb.x: Diffusion of Nitrogen in an Aluminum matrix.
 VASP              | [vasp/](vasp/job.pbs)                            | Self-consistent total energy calculation for FCC Silicon with VASP (same as QE above).
 DeePMD            | [deepmd/train_mlff_qe-cp-traj](deepmd/README.md) | Constructing Machine-learned Force Field using ab-initio data, neural networks, and further deployment using molecular dynamics package (LAMMPS).
 LAMMPS            | [lammps/](lammps/README.md)                      | Basic Molecular Dynamics run with LAMMPS for Copper using Lennard-Jones potential or EAM potential.
