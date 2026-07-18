@@ -34,7 +34,7 @@
 ## When commented out, the default project for user is assumed.
 ##PBS -A <PROJECT_NAME_IN_ACCOUNTING_SYSTEM>
 
-module load espresso
+module load espresso/7.5-host-intel-2023.1-libxc-7.0
 
 cd $PBS_O_WORKDIR
 
@@ -47,4 +47,4 @@ if [ ! -f "./n_pbe_gbrv_1.2.upf" ]; then
     cp /export/share/pseudo/n/gga/pbe/gbrv/1.2/us/n_pbe_gbrv_1.2.upf .
 fi
 
-mpirun -np $PBS_NP -hostfile $PBS_NODEFILE --mca pml ucx --mca btl ^openib $EXEC_CMD neb.x -ni 2 -in neb.AlN.in | tee neb.AlN.out
+mpirun -np $PBS_NP -hostfile $PBS_NODEFILE $EXEC_CMD neb.x -ni 2 -in neb.AlN.in | tee neb.AlN.out

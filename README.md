@@ -88,9 +88,10 @@ The folder structure (circa 2024-12) is as follows:
 │    │         ├── input
 │    │         ├── output
 │    │         └── output-reference
-│    ├── gpu
-│    ├── simple.x
-│    └── pw.x
+│    ├── gpu
+│    ├── neb.x
+│    ├── pw.x
+│    └── simple.x
 ├── gromacs
 │    ├── cpu-double
 │    ├── cpu-single
