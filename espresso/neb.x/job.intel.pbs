@@ -49,4 +49,4 @@ fi
 
 # for neb.x jobs using Intel MPI, we need to use -perhost flag explicitly,
 # tested on Azure cluster with Infiniband interconnect
-mpirun -np $PBS_NP -hostfile $PBS_NODEFILE -perhost $((PBS_NP / 2)) $EXEC_CMD neb.x -ni 2 -in neb.AlN.in | tee neb.AlN.out
+mpirun -np $PBS_NP -hostfile $PBS_NODEFILE -perhost $((PBS_NP / PBS_NUM_NODES)) $EXEC_CMD neb.x -ni 2 -in neb.AlN.in | tee neb.AlN.out
