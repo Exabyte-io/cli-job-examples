@@ -47,4 +47,6 @@ if [ ! -f "./n_pbe_gbrv_1.2.upf" ]; then
     cp /export/share/pseudo/n/gga/pbe/gbrv/1.2/us/n_pbe_gbrv_1.2.upf .
 fi
 
-mpirun -np $PBS_NP -hostfile $PBS_NODEFILE $EXEC_CMD neb.x -ni 2 -in neb.AlN.in | tee neb.AlN.out
+# for neb.x jobs using Intel MPI, we need to use -perhost flag explicitly,
+# tested on Azure cluster with Infiniband interconnect
+mpirun -np $PBS_NP -hostfile $PBS_NODEFILE -perhost $((PBS_NP / 2)) $EXEC_CMD neb.x -ni 2 -in neb.AlN.in | tee neb.AlN.out
