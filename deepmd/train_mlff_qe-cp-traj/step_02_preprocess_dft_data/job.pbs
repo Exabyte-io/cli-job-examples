@@ -35,8 +35,8 @@
 ## When commented out, the default project for user is assumed.
 ##PBS -A ACCOUNTING_PROJECT_NAME
 
-# load module
-module load deepmd/deepmd-2.0.2
+# load deepmd default module
+module load deepmd
 
 # go to the job working directory
 cd $PBS_O_WORKDIR
@@ -56,6 +56,6 @@ fi
 echo "Started convert_and_train_test_split.py"
 
 # run the training command
-python3 convert_and_train_test_split.py
+$EXEC_CMD python3 convert_and_train_test_split.py
 
 echo "Finished convert_and_train_test_split.py"

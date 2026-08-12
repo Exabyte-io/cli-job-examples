@@ -35,8 +35,8 @@
 ## When commented out, the default project for user is assumed.
 ##PBS -A ACCOUNTING_PROJECT_NAME
 
-# load module
-module load deepmd/deepmd-2.0.2
+# load deepmd default module
+module load deepmd
 
 # go to the job working directory
 cd $PBS_O_WORKDIR
@@ -61,15 +61,11 @@ fi
 # https://docs.deepmodeling.com/projects/deepmd/en/master/troubleshooting/howtoset_num_nodes.html
 # horovodrun -np $PBS_NP dp train --mpi-log=master ./dp_train_input.json
 
-export OMP_NUM_THREADS=1
-export TF_INTRA_OP_PARALLELISM_THREADS=1
-export TF_INTER_OP_PARALLELISM_THREADS=1
-
 # run the training command
-dp train ./dp_train_input.json -l train.log | tee train.log
+$EXEC_CMD dp train ./dp_train_input.json -l train.log | tee train.log
 
 # freeze the model checkpoints
-dp freeze -o graph.pb -l freeze.log | tee freeze.log
+$EXEC_CMD dp freeze -o graph.pb -l freeze.log | tee freeze.log
 
 # optionally, we could compress the output model file
 # dp compress -i graph.pb -o graph-compress.pb

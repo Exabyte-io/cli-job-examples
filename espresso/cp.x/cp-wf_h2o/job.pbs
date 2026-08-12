@@ -35,8 +35,8 @@
 ## When commented out, the default project for user is assumed.
 ##PBS -A ACCOUNTING_PROJECT_NAME
 
-# load module
-module load espresso/7.2-g-11.2.0-ompi-4.1.1-libxc-6.2.0
+# loads default module of espresso (i.e., espresso/6.3-gnu)
+module load espresso
 
 # go to the job working directory
 cd $PBS_O_WORKDIR
@@ -51,4 +51,4 @@ cd output
 ln -sf ../input/* .
 
 # run the calculation
-mpirun -np $PBS_NP cp.x -in generate_dft_data.in | tee generate_dft_data.out
+mpirun -np $PBS_NP $EXEC_CMD cp.x -in generate_dft_data.in | tee generate_dft_data.out
